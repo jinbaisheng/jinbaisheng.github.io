@@ -1,426 +1,306 @@
 <!DOCTYPE html>
-<html lang="en" dir="auto">
-
-<head><meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="index, follow">
-<title>Antibody | 蛋白纯化文献赏析</title>
-<meta name="keywords" content="">
-<meta name="description" content="蛋白纯化领域最新文献赏析与综述 | 每周更新">
-<meta name="author" content="Baisheng Jin">
-<link rel="canonical" href="https://jinbaisheng.github.io/categories/antibody/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.6a98292fb8fa8cf0f3ba4042d4b75515c04267550f3ad49ff6271b5af9562443.css" integrity="sha256-apgpL7j6jPDzukBC1LdVFcBCZ1UPOtSf9icbWvlWJEM=" rel="preload stylesheet" as="style">
-<link rel="icon" href="https://jinbaisheng.github.io/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://jinbaisheng.github.io/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://jinbaisheng.github.io/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://jinbaisheng.github.io/apple-touch-icon.png">
-<link rel="mask-icon" href="https://jinbaisheng.github.io/safari-pinned-tab.svg">
-<meta name="theme-color" content="#2e2e33">
-<meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" type="application/rss+xml" href="https://jinbaisheng.github.io/categories/antibody/index.xml">
-<link rel="alternate" hreflang="en" href="https://jinbaisheng.github.io/categories/antibody/">
-<noscript>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>抗体纯化 | 蛋白纯化文献赏析</title>
+    <meta name="description" content="抗体纯化文献专题，包含单克隆抗体、双特异性抗体、ADC等各类抗体药物的纯化工艺与技术创新">
+    <link rel="canonical" href="https://jinbaisheng.github.io/categories/antibody/">
     <style>
-        #theme-toggle,
-        .top-link {
-            display: none;
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #f5f7fa; color: #333; line-height: 1.6; }
+        a { text-decoration: none; color: inherit; }
+        
+        .nav-bar { background: white; padding: 15px 30px; display: flex; align-items: center; gap: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); position: sticky; top: 0; z-index: 100; flex-wrap: wrap; }
+        .nav-link { color: #666; font-size: 0.95em; }
+        .nav-link:hover { color: #667eea; }
+        .nav-sep { color: #ccc; }
+        .nav-current { color: #667eea; font-weight: 500; }
+        
+        .header { background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 50px 20px; text-align: center; }
+        .header h1 { font-size: 2.2em; margin-bottom: 10px; }
+        .header p { font-size: 1.1em; opacity: 0.9; max-width: 700px; margin: 0 auto; }
+        .stats { display: flex; justify-content: center; gap: 30px; margin-top: 20px; flex-wrap: wrap; }
+        .stat { text-align: center; }
+        .stat-num { font-size: 1.8em; font-weight: bold; }
+        .stat-label { font-size: 0.85em; opacity: 0.8; }
+        
+        .container { max-width: 1100px; margin: 40px auto; padding: 0 20px; }
+        
+        .section { margin-bottom: 50px; }
+        .section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+        .section-icon { font-size: 1.5em; }
+        .section-title { font-size: 1.5em; color: #2c3e50; font-weight: 600; }
+        
+        .subcategory-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
+        .subcategory-card { background: white; border-radius: 12px; padding: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); transition: all 0.3s; display: flex; align-items: center; gap: 15px; position: relative; }
+        .subcategory-card:hover { transform: translateY(-3px); box-shadow: 0 4px 15px rgba(0,0,0,0.12); }
+        .subcategory-icon { font-size: 2em; }
+        .subcategory-info { flex: 1; }
+        .subcategory-name { font-size: 1.1em; font-weight: 600; color: #2c3e50; margin-bottom: 4px; }
+        .subcategory-desc { font-size: 0.85em; color: #666; }
+        .subcategory-count { font-size: 0.8em; color: #999; margin-top: 4px; }
+        
+        .subcategory-card.has-articles .subcategory-name { color: #667eea; }
+        .subcategory-card.has-articles::after { content: ''; position: absolute; top: 10px; right: 10px; width: 8px; height: 8px; background: #27ae60; border-radius: 50%; }
+        
+        .articles-section { margin-top: 50px; }
+        .section-title-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 10px; }
+        .section-title-bar h2 { font-size: 1.4em; color: #2c3e50; }
+        .view-all { color: #667eea; font-size: 0.95em; }
+        .view-all:hover { text-decoration: underline; }
+        
+        .article-list { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+        .article-item { padding: 20px 25px; border-bottom: 1px solid #eee; transition: background 0.3s; }
+        .article-item:last-child { border-bottom: none; }
+        .article-item:hover { background: #f8f9fa; }
+        .article-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 15px; flex-wrap: wrap; }
+        .article-title { font-size: 1.1em; font-weight: 600; color: #2c3e50; flex: 1; }
+        .article-title:hover { color: #667eea; }
+        .article-badge { padding: 3px 10px; background: linear-gradient(135deg, #f39c12, #e67e22); color: white; border-radius: 12px; font-size: 0.75em; font-weight: 600; }
+        .article-desc { color: #666; font-size: 0.9em; margin-top: 8px; line-height: 1.6; }
+        .article-meta { display: flex; gap: 15px; color: #999; font-size: 0.85em; margin-top: 10px; flex-wrap: wrap; }
+        .article-tags { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 8px; }
+        .tag { padding: 2px 8px; background: #f0f2f5; border-radius: 10px; font-size: 0.8em; color: #666; }
+        
+        .back-btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; background: #667eea; color: white; border-radius: 8px; font-size: 0.95em; transition: all 0.3s; margin-top: 30px; }
+        .back-btn:hover { background: #5a6fd6; transform: translateY(-1px); }
+        
+        .footer { background: #2c3e50; color: #bdc3c7; text-align: center; padding: 30px 20px; margin-top: 50px; }
+        .footer-links { display: flex; justify-content: center; gap: 25px; margin-bottom: 15px; flex-wrap: wrap; }
+        .footer-links a { color: #ecf0f1; }
+        .footer-links a:hover { color: white; }
+        
+        @media (max-width: 768px) {
+            .header h1 { font-size: 1.6em; }
+            .stats { gap: 20px; }
+            .subcategory-grid { grid-template-columns: 1fr; }
         }
-
     </style>
-    <style>
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --theme: rgb(29, 30, 32);
-                --entry: rgb(46, 46, 51);
-                --primary: rgb(218, 218, 219);
-                --secondary: rgb(155, 156, 157);
-                --tertiary: rgb(65, 66, 68);
-                --content: rgb(196, 196, 197);
-                --hljs-bg: rgb(46, 46, 51);
-                --code-bg: rgb(55, 56, 62);
-                --border: rgb(51, 51, 51);
-            }
-
-            .list {
-                background: var(--theme);
-            }
-
-            .list:not(.dark)::-webkit-scrollbar-track {
-                background: 0 0;
-            }
-
-            .list:not(.dark)::-webkit-scrollbar-thumb {
-                border-color: var(--theme);
-            }
-        }
-
-    </style>
-</noscript><meta property="og:title" content="Antibody" />
-<meta property="og:description" content="蛋白纯化领域最新文献赏析与综述 | 每周更新" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://jinbaisheng.github.io/categories/antibody/" />
-
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Antibody"/>
-<meta name="twitter:description" content="蛋白纯化领域最新文献赏析与综述 | 每周更新"/>
-
 </head>
-
-<body class="list" id="top">
-<script>
-    if (localStorage.getItem("pref-theme") === "dark") {
-        document.body.classList.add('dark');
-    } else if (localStorage.getItem("pref-theme") === "light") {
-        document.body.classList.remove('dark')
-    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.body.classList.add('dark');
-    }
-
-</script>
-
-<header class="header">
-    <nav class="nav">
-        <div class="logo">
-            <a href="https://jinbaisheng.github.io/" accesskey="h" title="蛋白纯化文献赏析 (Alt + H)">蛋白纯化文献赏析</a>
-            <div class="logo-switches">
-                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
-                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                    </svg>
-                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="5"></circle>
-                        <line x1="12" y1="1" x2="12" y2="3"></line>
-                        <line x1="12" y1="21" x2="12" y2="23"></line>
-                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                        <line x1="1" y1="12" x2="3" y2="12"></line>
-                        <line x1="21" y1="12" x2="23" y2="12"></line>
-                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                    </svg>
-                </button>
-                <ul class="lang-switch"><li>|</li>
-                </ul>
-            </div>
-        </div>
-        <ul id="menu">
-        </ul>
+<body>
+    <nav class="nav-bar">
+        <a href="/" class="nav-link">首页</a>
+        <span class="nav-sep">›</span>
+        <span class="nav-current">抗体纯化</span>
     </nav>
-</header>
-<main class="main">
-
-
-<a href="https://jinbaisheng.github.io/" class="term-home-link" title="返回导航站">
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-        <polyline points="9 22 9 12 15 12 15 22"></polyline>
-    </svg>
-    <span>返回导航站</span>
-</a>
-
-<style>
-.term-home-link {
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    z-index: 9999;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 10px 18px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white !important;
-    text-decoration: none !important;
-    border-radius: 25px;
-    font-size: 14px;
-    font-weight: 500;
-    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-    transition: all 0.3s ease;
-}
-.term-home-link:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
-    background: linear-gradient(135deg, #7a8ef5 0%, #8a5db5 100%);
-    color: white !important;
-    text-decoration: none !important;
-}
-@media (max-width: 768px) {
-    .term-home-link {
-        top: 10px;
-        left: 10px;
-        padding: 8px 14px;
-        font-size: 12px;
-    }
-}
-</style>
-
-<main class="container" style="max-width: 1200px; margin: 0 auto; padding: 80px 20px 40px;">
     
-    
-    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 40px; border-radius: 16px; margin-bottom: 30px;">
-        <h1 style="font-size: 2.2em; margin-bottom: 10px;">📂 Antibody</h1>
-        <p style="opacity: 0.9;"></p>
-        <div style="margin-top: 15px;">
-            <a href="https://jinbaisheng.github.io/" style="color: white; text-decoration: underline; font-size: 0.9em;">← 返回导航站</a>
+    <header class="header">
+        <h1>💉 抗体纯化</h1>
+        <p>专注于抗体类药物纯化工艺优化，包括单克隆抗体、双特异性抗体、ADC偶联药物等多种抗体药物的层析技术创新与质量控制策略</p>
+        <div class="stats">
+            <div class="stat"><div class="stat-num">5</div><div class="stat-label">文献总数</div></div>
+            <div class="stat"><div class="stat-num">5</div><div class="stat-label">常见问题</div></div>
+            <div class="stat"><div class="stat-num">6</div><div class="stat-label">结构分类</div></div>
         </div>
-    </div>
+    </header>
     
-    
-    <div style="background: white; padding: 20px; border-radius: 12px; margin-bottom: 30px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
-        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
-            <div>
-                <span style="font-weight: 600; color: #333;">
-                    共 5 篇文章
-                </span>
+    <main class="container">
+        <section class="section">
+            <div class="section-header">
+                <span class="section-icon">🔧</span>
+                <h2 class="section-title">常见问题</h2>
             </div>
-            <div style="display: flex; gap: 10px;">
-                <button onclick="filterPosts('all')" class="filter-btn active" style="padding: 8px 16px; border: none; border-radius: 8px; cursor: pointer; background: #667eea; color: white;">全部</button>
-                <button onclick="filterPosts('pinned')" class="filter-btn" style="padding: 8px 16px; border: none; border-radius: 8px; cursor: pointer; background: #f0f2f5; color: #666;">置顶</button>
+            <div class="subcategory-grid">
+                <a href="/tags/charge-variant/" class="subcategory-card has-articles">
+                    <span class="subcategory-icon">⚡</span>
+                    <div class="subcategory-info">
+                        <div class="subcategory-name">电荷异构体</div>
+                        <div class="subcategory-desc">酸性峰、碱性峰、主峰分析</div>
+                        <div class="subcategory-count">1 篇文章</div>
+                    </div>
+                </a>
+                <a href="/tags/hcp/" class="subcategory-card has-articles">
+                    <span class="subcategory-icon">🦠</span>
+                    <div class="subcategory-info">
+                        <div class="subcategory-name">HCP</div>
+                        <div class="subcategory-desc">宿主细胞蛋白残留检测与去除</div>
+                        <div class="subcategory-count">1 篇文章</div>
+                    </div>
+                </a>
+                <a href="/tags/aggregation/" class="subcategory-card has-articles">
+                    <span class="subcategory-icon">🔗</span>
+                    <div class="subcategory-info">
+                        <div class="subcategory-name">聚集体去除</div>
+                        <div class="subcategory-desc">蛋白聚集体形成机理与控制</div>
+                        <div class="subcategory-count">1 篇文章</div>
+                    </div>
+                </a>
+                <a href="/tags/ligand-bleeding/" class="subcategory-card">
+                    <span class="subcategory-icon">🔬</span>
+                    <div class="subcategory-info">
+                        <div class="subcategory-name">配基脱落</div>
+                        <div class="subcategory-desc">层析填料配基脱落问题</div>
+                        <div class="subcategory-count">即将上线</div>
+                    </div>
+                </a>
+                <a href="/tags/color-issue/" class="subcategory-card">
+                    <span class="subcategory-icon">🎨</span>
+                    <div class="subcategory-info">
+                        <div class="subcategory-name">颜色问题</div>
+                        <div class="subcategory-desc">料液颜色异常分析与处理</div>
+                        <div class="subcategory-count">即将上线</div>
+                    </div>
+                </a>
             </div>
+        </section>
+        
+        <section class="section">
+            <div class="section-header">
+                <span class="section-icon">🧬</span>
+                <h2 class="section-title">结构分类</h2>
+            </div>
+            <div class="subcategory-grid">
+                <a href="/tags/mab/" class="subcategory-card has-articles">
+                    <span class="subcategory-icon">💉</span>
+                    <div class="subcategory-info">
+                        <div class="subcategory-name">单克隆抗体</div>
+                        <div class="subcategory-desc">单克隆抗体纯化工艺</div>
+                        <div class="subcategory-count">3 篇文章</div>
+                    </div>
+                </a>
+                <a href="/tags/bispecific/" class="subcategory-card has-articles">
+                    <span class="subcategory-icon">🔄</span>
+                    <div class="subcategory-info">
+                        <div class="subcategory-name">双特异性抗体</div>
+                        <div class="subcategory-desc">双特异性抗体纯化技术</div>
+                        <div class="subcategory-count">2 篇文章</div>
+                    </div>
+                </a>
+                <a href="/tags/adc/" class="subcategory-card">
+                    <span class="subcategory-icon">💥</span>
+                    <div class="subcategory-info">
+                        <div class="subcategory-name">ADC</div>
+                        <div class="subcategory-desc">抗体偶联药物纯化</div>
+                        <div class="subcategory-count">即将上线</div>
+                    </div>
+                </a>
+                <a href="/tags/aoc/" class="subcategory-card">
+                    <span class="subcategory-icon">🔗</span>
+                    <div class="subcategory-info">
+                        <div class="subcategory-name">AOC</div>
+                        <div class="subcategory-desc">抗体寡核苷酸偶联物</div>
+                        <div class="subcategory-count">即将上线</div>
+                    </div>
+                </a>
+                <a href="/tags/apc/" class="subcategory-card">
+                    <span class="subcategory-icon">🧪</span>
+                    <div class="subcategory-info">
+                        <div class="subcategory-name">APC</div>
+                        <div class="subcategory-desc">抗体蛋白偶联物</div>
+                        <div class="subcategory-count">即将上线</div>
+                    </div>
+                </a>
+                <a href="/tags/fragment/" class="subcategory-card">
+                    <span class="subcategory-icon">🧩</span>
+                    <div class="subcategory-info">
+                        <div class="subcategory-name">Fragment</div>
+                        <div class="subcategory-desc">抗体片段纯化技术</div>
+                        <div class="subcategory-count">即将上线</div>
+                    </div>
+                </a>
+            </div>
+        </section>
+        
+        <section class="articles-section">
+            <div class="section-title-bar">
+                <h2>📖 精选文献</h2>
+                <a href="/posts/" class="view-all">查看全部 →</a>
+            </div>
+            <div class="article-list">
+                <div class="article-item">
+                    <div class="article-header">
+                        <a href="/posts/fc-engineering-adcc/" class="article-title">抗体 Fc 段工程化改造：增强 ADCC 活性的技术突破</a>
+                        <span class="article-badge">⭐ 精选</span>
+                    </div>
+                    <p class="article-desc">从工艺工程师视角解读 Fc 段工程化改造技术在提高 ADCC 活性方面的创新与应用</p>
+                    <div class="article-meta">
+                        <span>📅 2026-04-04</span>
+                        <span>💉 单克隆抗体</span>
+                    </div>
+                    <div class="article-tags">
+                        <span class="tag">抗体工程</span>
+                        <span class="tag">Fc段改造</span>
+                        <span class="tag">ADCC</span>
+                    </div>
+                </div>
+                <div class="article-item">
+                    <div class="article-header">
+                        <a href="/posts/charge-variant-control/" class="article-title">抗体电荷异构体：表征与控制策略</a>
+                        <span class="article-badge">⭐ 精选</span>
+                    </div>
+                    <p class="article-desc">深入分析抗体电荷异构体的形成机制、表征方法及控制策略</p>
+                    <div class="article-meta">
+                        <span>📅 2026-04-04</span>
+                        <span>⚡ 电荷异构体</span>
+                    </div>
+                    <div class="article-tags">
+                        <span class="tag">电荷异构体</span>
+                        <span class="tag">CQA</span>
+                        <span class="tag">质量控制</span>
+                    </div>
+                </div>
+                <div class="article-item">
+                    <div class="article-header">
+                        <a href="/posts/amino-acid-ph-shift-protein-a/" class="article-title">氨基酸诱导 pH 偏移策略：革新 Protein A 层析洗脱工艺</a>
+                        <span class="article-badge">⭐ 精选</span>
+                    </div>
+                    <p class="article-desc">药明生物团队研发的氨基酸诱导 pH 偏移洗脱策略，解决低 pH 不稳定抗体的 Protein A 层析聚集难题</p>
+                    <div class="article-meta">
+                        <span>📅 2026-04-04</span>
+                        <span>🔗 聚集体去除</span>
+                    </div>
+                    <div class="article-tags">
+                        <span class="tag">Protein A</span>
+                        <span class="tag">抗体稳定</span>
+                    </div>
+                </div>
+                <div class="article-item">
+                    <div class="article-header">
+                        <a href="/posts/hcp-removal-training-2026/" class="article-title">HCP去除策略与检测方法培训（2026）</a>
+                        <span class="article-badge">⭐ 精选</span>
+                    </div>
+                    <p class="article-desc">系统讲解 HCP（宿主细胞蛋白）的去除策略与检测方法</p>
+                    <div class="article-meta">
+                        <span>📅 2026-04-04</span>
+                        <span>🦠 HCP</span>
+                    </div>
+                    <div class="article-tags">
+                        <span class="tag">HCP</span>
+                        <span class="tag">抗体纯化</span>
+                        <span class="tag">培训资料</span>
+                    </div>
+                </div>
+                <div class="article-item">
+                    <div class="article-header">
+                        <a href="/posts/protein-a-purification/" class="article-title">抗体 Protein A 亲和层析工艺优化</a>
+                    </div>
+                    <p class="article-desc">深入分析最新抗体纯化文献，从工业纯化工程师视角提炼实用工艺优化建议</p>
+                    <div class="article-meta">
+                        <span>📅 2026-03-26</span>
+                        <span>💉 单克隆抗体</span>
+                    </div>
+                    <div class="article-tags">
+                        <span class="tag">Protein A</span>
+                        <span class="tag">亲和层析</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <div>
+            <a href="/" class="back-btn">← 返回首页</a>
         </div>
-    </div>
-    
-    
-    
-    <div class="posts-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 25px;">
-        
-        <article class="post-card" data-pinned="false" style="background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.08); transition: transform 0.3s;">
-            
-            <div style="padding: 25px;">
-                <h2 style="font-size: 1.25em; margin: 10px 0; line-height: 1.4;">
-                    <a href="/posts/hcp-removal-training-2026/" style="color: #2c3e50; text-decoration: none;">HCP去除策略与检测方法培训（2026）</a>
-                </h2>
-                <p style="color: #666; font-size: 0.95em; margin-bottom: 15px; line-height: 1.6;">HCP（宿主细胞蛋白）去除策略介绍、检测方法对比及纳微科技案例分析</p>
-                <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 15px;">
-                    
-                    <span style="padding: 3px 10px; background: #f0f2f5; border-radius: 15px; font-size: 0.8em; color: #666;">HCP</span>
-                    
-                    <span style="padding: 3px 10px; background: #f0f2f5; border-radius: 15px; font-size: 0.8em; color: #666;">蛋白纯化</span>
-                    
-                    <span style="padding: 3px 10px; background: #f0f2f5; border-radius: 15px; font-size: 0.8em; color: #666;">抗体纯化</span>
-                    
-                    <span style="padding: 3px 10px; background: #f0f2f5; border-radius: 15px; font-size: 0.8em; color: #666;">层析工艺</span>
-                    
-                </div>
-                <div style="display: flex; justify-content: space-between; color: #999; font-size: 0.85em;">
-                    <span>📅 2026-04-04</span>
-                    <span>👤 纳微科技</span>
-                </div>
-            </div>
-        </article>
-        
-        <article class="post-card" data-pinned="true" style="background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.08); transition: transform 0.3s;">
-            
-            <div style="background: linear-gradient(135deg, #f39c12, #e67e22); color: white; padding: 5px 15px; font-size: 0.8em; font-weight: 600; display: inline-block;">
-                ⭐ 置顶
-            </div>
-            
-            <div style="padding: 25px;">
-                <h2 style="font-size: 1.25em; margin: 10px 0; line-height: 1.4;">
-                    <a href="/posts/fc-engineering-adcc/" style="color: #2c3e50; text-decoration: none;">抗体 Fc 段工程化改造：增强 ADCC 活性的技术突破</a>
-                </h2>
-                <p style="color: #666; font-size: 0.95em; margin-bottom: 15px; line-height: 1.6;">深入分析抗体 Fc 段工程化改造技术，从工艺工程师视角解读其在提高 ADCC 活性方面的创新与应用</p>
-                <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 15px;">
-                    
-                    <span style="padding: 3px 10px; background: #f0f2f5; border-radius: 15px; font-size: 0.8em; color: #666;">抗体工程</span>
-                    
-                    <span style="padding: 3px 10px; background: #f0f2f5; border-radius: 15px; font-size: 0.8em; color: #666;">Fc段改造</span>
-                    
-                    <span style="padding: 3px 10px; background: #f0f2f5; border-radius: 15px; font-size: 0.8em; color: #666;">ADCC</span>
-                    
-                    <span style="padding: 3px 10px; background: #f0f2f5; border-radius: 15px; font-size: 0.8em; color: #666;">糖工程</span>
-                    
-                </div>
-                <div style="display: flex; justify-content: space-between; color: #999; font-size: 0.85em;">
-                    <span>📅 2026-04-04</span>
-                    <span>👤 Baisheng Jin</span>
-                </div>
-            </div>
-        </article>
-        
-        <article class="post-card" data-pinned="false" style="background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.08); transition: transform 0.3s;">
-            
-            <div style="padding: 25px;">
-                <h2 style="font-size: 1.25em; margin: 10px 0; line-height: 1.4;">
-                    <a href="/posts/charge-variant-control/" style="color: #2c3e50; text-decoration: none;">抗体电荷异构体：表征与控制策略</a>
-                </h2>
-                <p style="color: #666; font-size: 0.95em; margin-bottom: 15px; line-height: 1.6;">深入分析抗体电荷异构体的形成机制、表征方法及控制策略</p>
-                <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 15px;">
-                    
-                    <span style="padding: 3px 10px; background: #f0f2f5; border-radius: 15px; font-size: 0.8em; color: #666;">电荷异构体</span>
-                    
-                    <span style="padding: 3px 10px; background: #f0f2f5; border-radius: 15px; font-size: 0.8em; color: #666;">CQA</span>
-                    
-                    <span style="padding: 3px 10px; background: #f0f2f5; border-radius: 15px; font-size: 0.8em; color: #666;">质量控制</span>
-                    
-                    <span style="padding: 3px 10px; background: #f0f2f5; border-radius: 15px; font-size: 0.8em; color: #666;">层析工艺</span>
-                    
-                </div>
-                <div style="display: flex; justify-content: space-between; color: #999; font-size: 0.85em;">
-                    <span>📅 2026-04-04</span>
-                    <span>👤 技术文献</span>
-                </div>
-            </div>
-        </article>
-        
-        <article class="post-card" data-pinned="true" style="background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.08); transition: transform 0.3s;">
-            
-            <div style="background: linear-gradient(135deg, #f39c12, #e67e22); color: white; padding: 5px 15px; font-size: 0.8em; font-weight: 600; display: inline-block;">
-                ⭐ 置顶
-            </div>
-            
-            <div style="padding: 25px;">
-                <h2 style="font-size: 1.25em; margin: 10px 0; line-height: 1.4;">
-                    <a href="/posts/amino-acid-ph-shift-protein-a/" style="color: #2c3e50; text-decoration: none;">氨基酸诱导 pH 偏移策略：革新 Protein A 层析洗脱工艺</a>
-                </h2>
-                <p style="color: #666; font-size: 0.95em; margin-bottom: 15px; line-height: 1.6;">深入分析药明生物团队研发的氨基酸诱导 pH 偏移洗脱策略，解决低 pH 不稳定抗体的 Protein A 层析聚集难题</p>
-                <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 15px;">
-                    
-                    <span style="padding: 3px 10px; background: #f0f2f5; border-radius: 15px; font-size: 0.8em; color: #666;">蛋白纯化</span>
-                    
-                    <span style="padding: 3px 10px; background: #f0f2f5; border-radius: 15px; font-size: 0.8em; color: #666;">Protein A</span>
-                    
-                    <span style="padding: 3px 10px; background: #f0f2f5; border-radius: 15px; font-size: 0.8em; color: #666;">层析工艺</span>
-                    
-                    <span style="padding: 3px 10px; background: #f0f2f5; border-radius: 15px; font-size: 0.8em; color: #666;">抗体稳定</span>
-                    
-                </div>
-                <div style="display: flex; justify-content: space-between; color: #999; font-size: 0.85em;">
-                    <span>📅 2026-04-04</span>
-                    <span>👤 Baisheng Jin</span>
-                </div>
-            </div>
-        </article>
-        
-        <article class="post-card" data-pinned="" style="background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.08); transition: transform 0.3s;">
-            
-            <div style="padding: 25px;">
-                <h2 style="font-size: 1.25em; margin: 10px 0; line-height: 1.4;">
-                    <a href="/posts/protein-a-purification/" style="color: #2c3e50; text-decoration: none;">抗体 Protein A 亲和层析工艺优化 | 文献赏析</a>
-                </h2>
-                <p style="color: #666; font-size: 0.95em; margin-bottom: 15px; line-height: 1.6;">深入分析最新抗体纯化文献，从工业纯化工程师视角提炼实用工艺优化建议</p>
-                <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 15px;">
-                    
-                    <span style="padding: 3px 10px; background: #f0f2f5; border-radius: 15px; font-size: 0.8em; color: #666;">蛋白纯化</span>
-                    
-                    <span style="padding: 3px 10px; background: #f0f2f5; border-radius: 15px; font-size: 0.8em; color: #666;">抗体</span>
-                    
-                    <span style="padding: 3px 10px; background: #f0f2f5; border-radius: 15px; font-size: 0.8em; color: #666;">Protein A</span>
-                    
-                    <span style="padding: 3px 10px; background: #f0f2f5; border-radius: 15px; font-size: 0.8em; color: #666;">亲和层析</span>
-                    
-                </div>
-                <div style="display: flex; justify-content: space-between; color: #999; font-size: 0.85em;">
-                    <span>📅 2026-03-26</span>
-                    <span>👤 Baisheng Jin</span>
-                </div>
-            </div>
-        </article>
-        
-    </div>
-    
-    
-</main>
-
-<script>
-function filterPosts(type) {
-    const cards = document.querySelectorAll('.post-card');
-    const btns = document.querySelectorAll('.filter-btn');
-    
-    btns.forEach(b => {
-        b.classList.remove('active');
-        b.style.background = '#f0f2f5';
-        b.style.color = '#666';
-    });
-    event.target.classList.add('active');
-    event.target.style.background = '#667eea';
-    event.target.style.color = 'white';
-    
-    cards.forEach(card => {
-        if (type === 'all') {
-            card.style.display = 'block';
-        } else if (type === 'pinned') {
-            card.style.display = card.dataset.pinned === 'true' ? 'block' : 'none';
-        }
-    });
-}
-</script>
-
     </main>
     
-<footer class="footer">
-    <span>&copy; 2026 <a href="https://jinbaisheng.github.io/">蛋白纯化文献赏析</a></span>
-    <span>
-        Powered by
-        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
-        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
-    </span>
-</footer>
-<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
-        <path d="M12 6H0l6-6z" />
-    </svg>
-</a>
-
-<script>
-    let menu = document.getElementById('menu')
-    if (menu) {
-        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
-        menu.onscroll = function () {
-            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
-        }
-    }
-
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener("click", function (e) {
-            e.preventDefault();
-            var id = this.getAttribute("href").substr(1);
-            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
-                    behavior: "smooth"
-                });
-            } else {
-                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
-            }
-            if (id === "top") {
-                history.replaceState(null, null, " ");
-            } else {
-                history.pushState(null, null, `#${id}`);
-            }
-        });
-    });
-
-</script>
-<script>
-    var mybutton = document.getElementById("top-link");
-    window.onscroll = function () {
-        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
-            mybutton.style.visibility = "visible";
-            mybutton.style.opacity = "1";
-        } else {
-            mybutton.style.visibility = "hidden";
-            mybutton.style.opacity = "0";
-        }
-    };
-
-</script>
-<script>
-    document.getElementById("theme-toggle").addEventListener("click", () => {
-        if (document.body.className.includes("dark")) {
-            document.body.classList.remove('dark');
-            localStorage.setItem("pref-theme", 'light');
-        } else {
-            document.body.classList.add('dark');
-            localStorage.setItem("pref-theme", 'dark');
-        }
-    })
-
-</script>
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="/">首页</a>
+            <a href="/categories/antibody/">抗体纯化</a>
+            <a href="/posts/">全部文献</a>
+            <a href="/index.xml">RSS订阅</a>
+        </div>
+        <p>© 2026 蛋白纯化文献赏析 | 由 OpenClaw 驱动</p>
+    </footer>
 </body>
-
 </html>
