@@ -11,7 +11,16 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 26 Mar 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://jinbaisheng.github.io/purification-literature-review/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 04 Apr 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://jinbaisheng.github.io/purification-literature-review/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>抗体 Fc 段工程化改造：增强 ADCC 活性的技术突破</title>
+      <link>https://jinbaisheng.github.io/purification-literature-review/posts/fc-engineering-adcc/</link>
+      <pubDate>Sat, 04 Apr 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://jinbaisheng.github.io/purification-literature-review/posts/fc-engineering-adcc/</guid>
+      <description>深入分析抗体 Fc 段工程化改造技术，从工艺工程师视角解读其在提高 ADCC 活性方面的创新与应用</description>
+    </item>
+    
     <item>
       <title>抗体 Protein A 亲和层析工艺优化 | 文献赏析</title>
       <link>https://jinbaisheng.github.io/purification-literature-review/posts/protein-a-purification/</link>
