@@ -11,7 +11,16 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 26 Mar 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://jinbaisheng.github.io/purification-literature-review/tags/%E8%9B%8B%E7%99%BD%E7%BA%AF%E5%8C%96/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 04 Apr 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://jinbaisheng.github.io/purification-literature-review/tags/%E8%9B%8B%E7%99%BD%E7%BA%AF%E5%8C%96/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>氨基酸诱导 pH 偏移策略：革新 Protein A 层析洗脱工艺</title>
+      <link>https://jinbaisheng.github.io/purification-literature-review/posts/amino-acid-ph-shift-protein-a/</link>
+      <pubDate>Sat, 04 Apr 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://jinbaisheng.github.io/purification-literature-review/posts/amino-acid-ph-shift-protein-a/</guid>
+      <description>深入分析药明生物团队研发的氨基酸诱导 pH 偏移洗脱策略，解决低 pH 不稳定抗体的 Protein A 层析聚集难题</description>
+    </item>
+    
     <item>
       <title>抗体 Protein A 亲和层析工艺优化 | 文献赏析</title>
       <link>https://jinbaisheng.github.io/purification-literature-review/posts/protein-a-purification/</link>
