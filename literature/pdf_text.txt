@@ -1,0 +1,935 @@
+[Page 1]
+REPORT
+Hybrid AI/ML-mechanistic framework enables intelligent optimization of 
+commercial biopharmaceutical downstream processing
+Rong-Zhu Wang
+a*, Yu-Xin Liaob*, Teng-Long Wanga*, Xiao-Yang Jinga*, Guang Yanga, Hao Wanga, 
+Feng Xiaoa, Yi Zonga, Yan Yanga, Ye Yuana, Xuan Xiana, Shan-Jing Yaob, Lei Jina, Dong-Qiang Lin
+b, 
+and Yun Kenneth Kanga
+aChangchun GeneScience Pharmaceuticals Co., Ltd., Changchun, China; bKey Laboratory of Biomass Chemical Engineering of 
+Ministry of Education, Zhejiang Key Laboratory of Smart Biomaterials, College of Chemical and Biological Engineering, Zhejiang 
+University, Hangzhou, China
+ABSTRACT
+Biopharmaceutical manufacturing requires continuous improvement to ensure robust, 
+efficient, and high-quality processes, yet traditional experimental designs remain 
+resource-demanding and insufficient to capture interactions of multiple parameters. 
+Here, we introduce a hybrid framework integrating artificial intelligence (AI)/machine 
+learning (ML) with mechanistic modeling to optimize anion-exchange chromatography 
+and resolve the long-standing yield-purity trade-off in PEGylated protein purification. 
+Three critical process parameters were first identified through correlation analysis 
+between 30 input factors and critical quality attributes/process yield from 400+ com­
+mercial manufacturing lots, which were further refined using equilibrium dispersive and 
+steric mass action models. Over 40,000 in silico optimization via the mechanistic model 
+resolved the yield-purity trade-off, achieving a 12% increase in yield and 33% reduction 
+in high-molecular-weight impurities. The optimized process conditions were verified 
+across laboratory (n = 3), pilot (n = 3), and commercial (n = 18) runs, consistently demon­
+strating scalability and process robustness. This study highlights the power of combining 
+data-driven machine learning with mechanistic modeling for process optimization, 
+leading to an improved commercial process with substantial cost savings and paving 
+the way for upcoming intelligent biomanufacturing.
+ARTICLE HISTORY 
+Received 18 December 2025  
+Revised 25 February 2026  
+Accepted 26 February 2026 
+KEYWORDS 
+Machine learning; 
+mechanistic modeling; 
+PEGylated protein; process 
+optimization; purification
+Introduction
+Biopharmaceutical manufacturing underpins modern healthcare by delivering life-saving therapies ranging 
+from recombinant proteins to advanced gene and cell therapies. As biologics become increasingly complex 
+and global demand continues to grow, process optimization has emerged as a critical challenge for the 
+industry. Continuous improvement is not only a regulatory expectation, as emphasized by ICH Q10, but 
+also a strategic imperative that unites patient needs, healthcare sustainability, and industrial competitiveness 
+through enhanced product quality and reduced costs.
+Conventional optimization approaches, including one-factor-at-a-time experiments and design of 
+experiments (DoE), face inherent limitations in this context.1 These methods are resource-intensive 
+(often requiring more than 6 months to complete) and statistically constrained by dimensionality reduction, 
+limiting their ability to capture complex multivariate interactions. As a result, they frequently fail to achieve 
+the efficiency and precision demanded by modern biologics production, underscoring the urgent need for 
+more advanced, data-driven strategies with well-understood mechanisms to guide next-generation 
+manufacturing.
+CONTACT Dong-Qiang Lin 
+lindq@zju.edu.cn 
+College of Chemical and Biological Engineering, Zhejiang University, Hangzhou 310058, 
+China; Yun Kenneth Kang 
+kangk0902@outlook.com 
+Changchun GeneScience Pharmaceuticals Co., Ltd., Chengyuan Road, High-tech 
+Development Zone, Changchun 310000, China
+*These authors contributed equally.
+Supplemental data for this article can be accessed online at https://doi.org/10.1080/19420862.2026.2644662.
+MABS                                                           
+2026, VOL. 18, NO. 1, 2644662 
+https://doi.org/10.1080/19420862.2026.2644662
+© 2026 The Author(s). Published with license by Taylor & Francis Group, LLC.  
+This is an Open Access article distributed under the terms of the Creative Commons Attribution-NonCommercial License (http://creativecommons.org/licenses/by-nc/4. 
+0/), which permits unrestricted non-commercial use, distribution, and reproduction in any medium, provided the original work is properly cited. The terms on which this 
+article has been published allow the posting of the Accepted Manuscript in a repository by the author(s) or with their consent.
+
+
+[Page 2]
+Consequently, the biopharmaceutical industry has increasingly turned to artificial intelligence/ 
+machine learning (AI/ML) to overcome these limitations. Driven by the need for higher efficiency, 
+reduced variability, and improved product quality, AI/ML applications in biopharmaceutical manufac­
+turing have expanded rapidly in recent years.2–11 Algorithms such as multivariate data analysis and 
+artificial neural networks (ANNs) have been used to analyze large-scale process data, predict outcomes, 
+and optimize operating conditions in real time.6,7,11 For example, ANN-based models have accurately 
+predicted depth filter loading capacity for monoclonal antibody clarification (R2 = 0.98), enabling 
+variable filter sizing and achieving a 10% reduction in cost of goods.2 Similarly, ANN-driven optimiza­
+tion of CHO cell culture has led to a 48% increase in antibody production.10 Beyond upstream and 
+clarification steps, recent studies have also explored the potential of integrating AI with Internet of 
+things (IoT) systems to enhance efficiency, quality control, and regulatory compliance. Collectively, 
+these advances highlight the transformative promise of AI/ML in biopharmaceutical processing, while 
+underscoring the need for approaches that combine predictive power with mechanistic interpretability 
+to achieve reliable, scalable impact.12
+In contrast, mechanistic models offer interpretable descriptions of the underlying transport and 
+binding phenomena and have been successfully applied to optimize ion-exchange13–19 hydrophobic 
+interaction,20,21 mixed-mode chromatography,22–24 and continuous chromatography.25–28 These mod­
+els capture convection, dispersion, liquid – solid mass transfer, pore diffusion, and adsorption, 
+requiring relatively little experimental data for calibration and enabling extrapolation beyond mea­
+sured conditions. Recent advances have even enabled digital twin systems for chromatographic 
+control, where mechanistic models accurately predicted elution profiles and optimized collection 
+windows in real time, maintaining product quality with <2% error.18 However, when applied to 
+highly complex processes with numerous variables, mechanistic models can become computationally 
+intensive and difficult to manage, which constrains their broader industrial application.
+This dichotomy highlights a critical gap: the lack of a unified framework that combines the pattern- 
+recognition strength of AI/ML with the interpretability and extrapolation capabilities of mechanistic 
+modeling.29–31 To address this need, we propose a hybrid workflow that strategically integrates AI/ML 
+with mechanistic modeling to optimize the PEGylated protein purification via anion-exchange chromato­
+graphy (AEX). Unlike previous approaches used in isolation, our methodology (Figure 1) establishes 
+a synergistic loop: AI/ML rapidly screens extensive manufacturing datasets to identify critical process 
+parameters, while mechanistic modeling provides interpretable, mechanism-based simulations for in silico 
+optimization and sensitivity analysis. This hybrid design bridges the “black-box” nature of AI/ML with the 
+physical insight of mechanistic modeling, while simultaneously reducing the computational burden of 
+comprehensive mechanistic modeling.
+The objectives of this study are four-fold: (1) develop a robust parameter-screening protocol combining 
+correlation analysis with ML-based evaluation; (2) establish a mechanistic model to predict chromato­
+graphic profiles across diverse operating conditions; (3) implement a stepwise optimization strategy 
+balancing performance with associated risk; and (4) verify the optimized process across laboratory, pilot, 
+and commercial scales. This work would make three key contributions: it systematically leverages under­
+utilized commercial manufacturing data for process optimization; it establishes a general framework for 
+integrating data-driven and mechanistic approaches; and it provides a regulatory-compatible pathway for 
+implementing process improvements through multi-scale verification. By breaking the traditional yield- 
+purity trade-off and maintaining stringent quality control (<1% high molecular weight (HMW) level), this 
+framework delivers measurable industrial benefits while ensuring compliance with regulatory expectations. 
+Importantly, it demonstrates how concepts often confined to laboratory studies can be successfully 
+transferred to commercial-scale manufacturing, paving the way for intelligent, lifecycle-oriented bioprocess 
+intensification.
+The workflow begins with systematic data collection from manufacturing datasets, followed by rigorous 
+data review and preprocessing to ensure accuracy and reliability. ML tools are applied to identify the critical 
+and key process parameters (CPPs and KPPs), which are subsequently optimized using mechanistic 
+modeling. Then the optimization outcomes are confirmed in scale-down studies and further confirmed at 
+pilot and commercial manufacturing scales. The workflow operates as a continuous cycle of data collection, 
+2
+R.-Z. WANG ET AL.
+
+
+[Page 3]
+analysis, optimization, and verification, enabling iterative process improvement and robust lifecycle 
+management.
+Materials and methods
+Machine learning
+Objective of the ML workflow
+The primary objective of this research is to harness ML for enhancing the efficiency of biopharmaceu­
+tical downstream processes by accurately predicting critical quality attributes (CQAs) and key process 
+attributes, such as purity and yield, from various process input parameters. Building on the identifica­
+tion of critical parameters, we then used strategies including Latin hypercube sampling (LHS), grid 
+sampling, Bayesian optimization, and genetic algorithms to generate extensive parameter combinations 
+within their physical and engineering constraints. These combinations are subjected to high-throughput 
+prediction and screening using a pre-trained ML model to identify optimal parameter ranges that align 
+Figure 1. Hybrid workflow integrating AI/ML and mechanistic modeling for process optimization. The workflow begins with 
+systematic data collection from manufacturing datasets, followed by rigorous data review and preprocessing to ensure 
+accuracy and reliability. ML tools are applied to identify the critical and key process parameters (CPPs and KPPs), which are 
+subsequently optimized using mechanistic modeling. Then the optimization outcomes are confirmed in scale-down studies 
+and further confirmed at pilot and commercial manufacturing scales. The workflow operates as a continuous cycle of data 
+collection, analysis, optimization, and verification, enabling iterative process improvement and robust lifecycle 
+management.
+MABS
+3
+
+
+[Page 4]
+with desired outcomes. The selected parameter sets are subsequently verified through lab-scale experi­
+ments and, upon demonstrating stability and reliability, are applied to pilot or commercial production. 
+This integrated approach enables a model-driven, closed-loop process optimization, where ML algo­
+rithms dynamically regulate process inputs to ensure desired outcomes, minimize variability, and 
+enhance overall product quality.
+Data collection
+The data collection for this study was designed to construct models that accurately reflect real-world 
+manufacturing conditions. To achieve this, a substantial dataset was assembled, comprising 423 individual 
+production batches monitored over a 13-month period from August 2023 to August 2024. This extended 
+timeframe ensured that natural process variations and diverse operational conditions were comprehensively 
+captured. Each batch in the dataset was characterized by 30 distinct process parameters, which are 
+fundamental levers for controlling and optimizing process outcomes. These parameters were systematically 
+classified into different categories based on their function and influence. Direct input parameters are those 
+actively adjusted to steer the process toward its targets. In contrast, indirect input parameters represent 
+background factors that, while not directly controlled, can still significantly affect system variability and 
+performance. The resulting process output parameters are used to evaluate the success and results of each 
+production run. Among these outputs, a specific CQA, namely HMW species, is of paramount importance. 
+This CQA is related to the safety, efficacy, and quality of the product, making it the central focus of any 
+process optimization effort. This ensures both regulatory compliance and product reliability, particularly 
+when efforts are made to improve process yield.
+Data preparation
+Data preparation constituted a critical phase in establishing a reliable foundation for model development. 
+The process began with rigorous data cleaning, where batches containing missing quality attributes or 
+incomplete process parameter records were systematically excluded, refining the initial dataset to a finalized 
+set of 400 representative batches. Subsequently, all parameters were logically categorized into distinct 
+groups – including direct inputs, indirect inputs, outputs, and CQAs – to support structured analysis and 
+model interpretation. To mitigate the potential distortion introduced by parameters of varying scales and 
+units, normalization and scaling techniques were applied, ensuring that no single parameter disproportio­
+nately influenced model behavior, and thereby enhancing both the stability and predictive accuracy of the 
+resulting models.
+Model building workflow
+The ML workflow was systematically designed to address the research objective of predicting CQAs from 
+process parameters. This comprehensive process began with clearly defining the predictive modeling task, 
+followed by exploratory data analysis to uncover underlying patterns and relationships within the dataset. 
+Feature engineering was then used to refine and select the most informative predictors, enhancing the model’s 
+ability to capture essential signals in the data. For model development, multiple algorithms were rigorously 
+evaluated including random forest32 for handling complex interactions, support vector machines33 for high- 
+dimensional spaces, linear regression for baseline performance, and advanced gradient boosting methods like 
+XGBoost,34 and LightGBM35 for their efficiency with large datasets. Neural networks36 were also considered 
+for capturing highly non-linear relationships. The final phase involved robust validation through train-test 
+splitting and k-fold (setting k = 5 here) cross-validation,37 ensuring reliable performance estimation and 
+minimizing overfitting risks across diverse data partitions.
+In this procedure, the total dataset was randomly partitioned into five equal-sized subsamples (folds). 
+The training and validation process was then executed as follows: (1) Iterative Training: The model was 
+trained five separate times. In each iteration, four of the folds (80% of the data) were used as the training set, 
+while the remaining single fold (20% of the data) was retained as the validation set. (2) Rotational 
+Validation: This process was rotated so that each of the five folds served as the validation set exactly 
+once. (3) Aggregation: The performance results from all five folds were averaged to produce a single 
+estimation of the model’s generalization performance.
+4
+R.-Z. WANG ET AL.
+
+
+[Page 5]
+Model evaluation
+Model evaluation constituted a critical phase in validating the reliability of ML models for 
+predicting CQAs. A comprehensive set of performance metrics was used to thoroughly assess 
+model capabilities, including accuracy for overall prediction correctness, precision and recall for 
+evaluating positive class identification, and the F1 score to balance these measures, particularly in 
+imbalanced datasets. For regression tasks, R-squared quantified the proportion of explained var­
+iance, while mean squared error and its rooted counterpart measured prediction deviations. The 
+analysis further incorporated Pearson correlation coefficient to assess linear relationships, Spearman 
+correlation coefficient for rank-based monotonic associations, and mean absolute percentage error 
+for intuitive interpretation of prediction errors. Through systematic comparison across these 
+diverse metrics, the relative strengths and limitations of different algorithmic approaches were 
+rigorously examined. Based on the overall rankings of the Pearson correlation coefficient, 
+Spearman correlation coefficient, and mean absolute percentage error, the most appropriate 
+model for CQA prediction in the biopharmaceutical manufacturing context of this study was 
+determined to the best of our knowledge.
+Model optimization
+Model optimization was conducted through a comprehensive approach to enhance performance and 
+reliability. The process involved fine-tuning hyperparameters and feature selection (e.g., ablation study 
+based on CQA correlation strength) to identify best configurations that optimize performance metrics. 
+Additionally, various algorithms, including random forest, support vector machines, linear regression, 
+XGBoost, LightGBM, and neural networks, were tested (as claimed above in the Model Building 
+Workflow section), and ensemble methods were used to leverage the strengths of multiple models, thereby 
+improving overall performance. For instance, we have summarized the comparative performance of the 
+candidate models for yield prediction in the Supplementary Table S1. This table provides a head-to-head 
+comparison of the various model architectures and features. This quantitative analysis identified Model 
+Candidates 3332 and 3401 as the superior architecture and feature combinations.
+To ensure robustness and stability, five-fold cross-validation techniques were utilized, enabling thorough 
+evaluation of the model’s consistency across different datasets. This iterative refinement process not only 
+improved predictive accuracy but also ensured that the models could perform effectively under diverse 
+conditions. By systematically analyzing performance metrics and incorporating advanced optimization 
+techniques, the models achieved superior reliability and precision in their predictions.
+Model deployment
+Visualization techniques were strategically employed to elucidate the relationships between predicted and 
+actual values of critical process parameters. This analytical approach encompassed the use of correlation 
+heatmaps to illustrate both linear and monotonic associations among parameters and CQAs through 
+Pearson and Spearman coefficients. Complementing this, SHapley Additive exPlanations (SHAP) value 
+visualizations systematically quantified the contribution of individual features to model predictions, thereby 
+enhancing both interpretability and transparency in the modeling outcomes.38
+By integrating the results from correlation heatmaps and the model’s feature importance, we identified 
+critical process parameters essential for generating input parameter combinations. These combinations aim 
+to deploy the best-performing model for optimal parameter search. Based on the selected critical parameters 
+and their associated physical or engineering constraints, extensive parameter combinations are generated 
+using techniques such as LHS, grid sampling, Bayesian optimization, or genetic algorithms. Over 10 billion 
+parameter combinations were created and subjected to high-throughput prediction and virtual screening 
+using the pre-trained optimal model to identify those aligning with desired CQAs.
+Resin, protein, and buffers
+The AEX steps were performed using NW Rose Q BB resin (NanoMicro, Suzhou, China) packed in columns 
+of three distinct scales: laboratory (XK column, 1.6 cm × 23.4 cm), pilot (Easy-Axi column, 10.0 cm × 23.4  
+cm), and manufacturing scale (BPG column, 45 cm × 23.4 cm). To ensure process consistency and minimize 
+MABS
+5
+
+
+[Page 6]
+scale-up risks, the protein intermediate and stock solutions were sourced directly from in-house manufac­
+turing operations. All required buffers for the chromatography process, including equilibration, wash, and 
+elution solutions, were subsequently prepared according to established formulations using these stock 
+solutions.
+Calibration and verification experiments for mechanistic modeling
+The AEX experiments were conducted on an ÄKTA avant 150™ chromatography system (Cytiva, Uppsala, 
+Sweden). For mechanistic modeling, the buffer A contained 20 mM Tris-HCl (pH 7.4), and the buffer 
+B consisted of 20 mM Tris-HCl and 130 mM NaCl (pH 7.4). All of the experiments consisted of equilibra­
+tion (3 column volumes (CV) of buffer A), sample loading, wash (3 CV of buffer A), elution (0-60% buffer 
+B) and regeneration (2 CV of 1 M NaCl) with a linear velocity of 150 cm/h. A detailed summary of the 
+loading density and elution step of each experiment employed for model calibration and verification is 
+presented in Table 1. During the elution steps, the protein peaks were collected in each 0.5 CV fraction that 
+was further analyzed. The total protein concentration in each fraction was quantified using an ultraviolet 
+spectrophotometer (UV1900i, Shimadzu Corporation, Japan). The size exclusion chromatography – high 
+performance liquid chromatography (SEC-HPLC) analytical method was used to obtain the content of 
+HMW and mono-PEGylated protein in each fraction.
+Mechanistic model calibration and verification
+The mechanistic model inside the AEX column combined the equilibrium dispersive model (EDM) for 
+mass transfer and the steric mass action (SMA) model for adsorption. The detailed descriptions of these 
+models and the determination of their parameters (ɛt, Dapp, and Λ) are provided in our previous 
+publication.15 Based on the four calibration experiments, an inverse fitting method was used to estimate 
+the SMA model parameters (ν, keq, kkin, and σ) for HMW and mono-PEGylated protein. For model 
+verification, one stepwise elution experiment (see Table 1, Run 5) was used to assess the predictive capability 
+of the mechanistic model beyond the calibration range. All mechanistic model parameters in this study are 
+presented in Table 2.
+Process confirmation and robustness evaluation
+When the optimization target was achieved by in silico simulation, the process was confirmed by “wet” 
+experiments at both laboratory and pilot scales. Both scales were carried out using the identical procedure, 
+Table 1. Calibration and verification experiments for mechanistic modeling.
+No.
+Purpose
+Loading density (g/L)
+Elution length (CV)
+Elution starting point
+Elution ending point
+Run 1
+Calibration
+1.0
+15
+0%B
+60%B
+Run 2
+Calibration
+1.0
+20
+0%B
+60%B
+Run 3
+Calibration
+2.5
+15
+0%B
+60%B
+Run 4
+Calibration
+3.8
+15
+0%B
+60%B
+Run 5
+Verification
+3.8
+15
+35%B
+35%B
+Table 2. Mechanistic model parameters.
+Parameter
+Notation
+Value
+Unit
+Column length
+L
+234
+mm
+Linear velocity
+u
+0.42
+mm/s
+Ionic capacity
+Λ
+1.61
+mol/L
+Total porosity
+εt
+0.85
+–
+Apparent dispersion coefficient
+Dapp
+0.12
+mm2/s
+Characteristic charge
+ν
+1.02/1.45†
+–
+Equilibrium coefficient
+keq
+0.11/0.08
+–
+Kinetic coefficient
+kkin
+3.52/0.76
+sMν
+Shielding factor
+σ
+2.39 × 104/1.52 × 104
+–
+†1.02/1.45 means that the characteristic charge of HMW and mono-PEGylated protein were 1.02 and 1.45, 
+respectively.
+6
+R.-Z. WANG ET AL.
+
+
+[Page 7]
+as described here. The chromatographic process was performed with equilibration using 20 mM Tris-HCl, 
+pH 7.4. The sample was conditioned with 20 mM Tris-HCl and 4 M NaCl to adjust protein concentration 
+and conductivity prior to loading. After sample application, the column was washed with 20 mM Tris-HCl, 
+4 mM NaCl, pH 7.4, followed by elution with 20 mM Tris-HCl, 50 mM NaCl, pH 7.4. The eluate was 
+analyzed by UV absorbance for protein concentration and by SEC-HPLC for HMW level.
+To test the robustness of the process, wash conductivity and wash column volume were evaluated by 
+a full-factorial DoE design. The lower and upper limits of wash conductivity were set as 1.8 mS/cm and 2.2  
+mS/cm, and those of the wash column volume set as 4 CV and 8 CV. Triplicate runs were performed at the 
+set point, thus seven runs in total for the DoE design. Among all the experiments, the pH and conductivity 
+of load kept the same with those of wash. The results were analyzed by JMP, using process yield and HMW 
+level as the outputs.
+Process performance qualification
+Six consecutive tests for process performance qualification (PPQ) were carried out to verify that product 
+quality and process performance could be consistently controlled. The PPQ protocol was drafted based on 
+internal guidelines and aligned with the National Medical Products Administration’s Technical Guidelines 
+for Post-Approval Changes to Marketed Biological Products. This work only discusses the AEX step and 
+focuses on the process yield and HMW level of the AEX to compare the results of the pre-change and post- 
+change processes.
+SEC-HPLC
+In this study, the detection of HMW level was performed using HPLC according to a standardized operating 
+procedure. The HPLC system (Agilent Technologies, CA), equipped with a TSKgel-G3000 SWXL column 
+(Tosoh Bioscience, Japan), was operated under the following conditions: a mobile phase of 0.5% triethy­
+lamine − 0.05 mol/L phosphate buffer (pH 7.0), a detection wavelength of 214 nm, a flow rate of 0.6  
+mL/min, and a column temperature of ambient temperature. Samples were injected at a volume of 20 μL 
+and analyzed over a 30-min run time. Sample solutions were prepared by diluting the test product in the 
+mobile phase to a concentration of approximately 1.0 mg/mL. System suitability tests were conducted to 
+ensure the validity of the chromatographic conditions, and data were analyzed using area normalization 
+method for HMW level.
+Results
+Hybrid workflow for synergistic optimization of a manufacturing process
+We developed a hybrid workflow that integrates ML and mechanistic modeling for the synergistic 
+optimization of biopharmaceutical manufacturing process (Figure 1). The strategy is designed to achieve 
+measurable process improvements with minimal changes, guided by in silico optimization and subsequently 
+verified through PPQ runs. By combining data-driven parameter identification with physics-based simula­
+tion, the workflow provides a robust path for process optimization that is in alignment with regulatory 
+expectations.
+This integrated workflow begins with AI/ML-driven parameter identification, where a systematic ana­
+lysis of manufacturing data establishes correlations between process parameters and CQAs or yield, 
+effectively screening the most influential parameters for subsequent optimization. The second phase 
+involves mechanistic modeling and in silico optimization, employing models calibrated through experi­
+ments based on mass transfer and adsorption principles. Guided by the ML-identified parameters, 
+a progressive optimization strategy is implemented: starting with adjustments within approved ranges, 
+then extending to parameters with minimal impact on CQAs, and ultimately expanding to additional 
+parameters after appropriate regulatory engagement. The third stage combines computational simulations 
+with necessary experimental verification to assess process robustness, establishing reliable operating 
+windows through wet-lab confirmation since current regulatory frameworks do not fully accept unvalidated 
+MABS
+7
+
+
+[Page 8]
+models. The workflow concludes with process verification and regulatory alignment, where laboratory and 
+pilot-scale confirmation runs support the execution of process verification and comparability studies to 
+demonstrate robustness and secure regulatory approval.
+Key/Critical process parameter determination by Al/ML
+A robust ML framework was established to predict CQAs, such as HMW species and impurities. Host 
+cell protein and host cell DNA are no longer considered CQAs at this purification step, as both were 
+consistently below the quantification limit in the protein solution prior to the PEGylation process. 
+Therefore, this study focused specifically on optimizing yield and HMW removal. The development 
+process was underpinned by a systematic methodology that included exploratory data analysis, correla­
+tion analysis, feature engineering, and rigorous model evaluation. To elucidate the interdependencies 
+between process parameters and CQAs, both Pearson and Spearman correlation matrices were con­
+structed (Figure 2a,b). Leveraging these correlation heatmaps, this systematic methodology provided 
+a clear, data-driven basis for selecting the most impactful input features, a critical step that substantially 
+enhanced the final model’s predictive power.
+The selected features (shown in Table 3) include process parameters (PPs) such as conductivity, pH, and 
+UV indicators, as well as column performance indicators and sample characteristics. The following features 
+demonstrated their importance in achieving optimal model performance. The heterogeneity of the PEG 
+Figure 2. Crucial results of machine learning workflow. a, b, Heatmaps showing the Pearson (a) and Spearman (b) 
+correlation matrices for four categories of process parameters. This visualization utilizes a color gradient (accessible in 
+the online version) to indicate the strength and direction of the correlations, offering a clear overview of the interconnec­
+tions among the parameters. Hierarchical clustering was applied to the Pearson/Spearman correlation matrix, with 
+distances calculated based on absolute correlations to group both strong positive and negative correlations together. 
+c, d, Model performance in predicting critical quality attributes (CQAs) for the test (validation) set is evaluated, where X_test 
+represents the actual values, and X_pred denotes the model’s predictions. The Pearson Correlation Coefficient (PCC), 
+Spearman Correlation Coefficient (SCC), and Mean Absolute Percentage Error (Prediction_error) are illustrated in the figure. 
+e, f, SHAP (SHapley Additive exPlanations) summary plots illustrating the top feature contributions to Critical Quality 
+Attribute (CQA) predictions. Features are ranked by the magnitude of their impact on model output; factors not displayed 
+possess negligible SHAP values. This visualization clarifies the relative significance of process parameters, enhancing model 
+transparency and identifying key levers for process optimization.
+8
+R.-Z. WANG ET AL.
+
+
+[Page 9]
+chain may also cause variation in the binding and elution behaviors of PEGylated proteins on Q BB resin. 
+However, critical raw material attributes of PEG, such as purity and molecular weight, have already been 
+strictly controlled, resulting in low batch-to-batch variation and negligible effects. Therefore, inputs relating 
+to the heterogeneity of the PEG chain were excluded from the ML analysis.
+Incorporating these selected features into the ML models significantly enhanced the predictive accuracy 
+for CQAs (Figure 2c,d). This feature selection process ensures that the ML algorithms remain data-driven 
+while aligning with biochemical and process principles, thereby providing actionable insights for process 
+optimization and quality control. These insights directly support enhancements in both process efficiency 
+and product quality.
+By integrating insights from correlation heatmaps and feature importance analysis, critical process 
+parameters for optimization were identified. Among these, three key input process parameters – ‘Load 
+Conductivity (PP8),’ ‘Wash-1 Conductivity (PP11),’ and ‘Wash-2 Conductivity (PP13)’ - had significant 
+impact on process outcomes (Figure 2e,f). While these parameters were prioritized for exploration, 
+numerous combinations of other critical parameters were also derived to ensure comprehensive 
+optimization.
+To explore these parameter combinations, advanced techniques such as LHS,39 grid sampling, Bayesian 
+optimization,40 and genetic algorithms41 were used, generating outcome predictions from over 10 billion 
+parameter sets. These combinations undergo high-throughput prediction and virtual screening using a pre- 
+trained optimal model to identify configurations that align with desired CQAs. As a representative example 
+of this workflow, we have provided Supplementary Table S2, which details the results of an in silico 
+optimization search encompassing over 2 million parameter combinations. To ensure this extensive dataset 
+remains interpretable and accessible within standard spreadsheet constraints, we applied a hierarchical 
+clustering analysis to aggregate the outputs into 200 representative groups, highlighting the top-performing 
+candidates from each cluster. For transparency, the data are presented as normalized values relative to the 
+historical baseline (defined as 1.0% or 100%). This normalization allows for a quantitative assessment of the 
+optimization magnitude, specifically the successful decoupling of the yield/purity trade-off, while main­
+taining the confidentiality of proprietary information.
+The scale of computational experimentation far exceeds the practicality of traditional wet lab or in silico 
+mechanistic methods. Through this virtual screening process, hundreds of parameter combinations leading 
+to improved yield/CQAs were identified within the existing proven acceptable ranges. Promising candidates 
+are further verified through lab-scale experiments, and if results demonstrate stability and reliability, they 
+are implemented in pilot or commercial production. This ML-driven workflow establishes a closed-loop 
+system for efficient process optimization. However, our analysis revealed that yield improvements could not 
+exceed 7% without compromising the percentage of HMW impurities. We are keen to explore whether 
+higher yield increases can be achieved while maintaining or reducing HMW levels.
+The analysis shown in Figure 2a,b indicates that yield and HMW removal are strongly anti-correlated 
+within the current operating window, meaning that improvements in one normally compromise the other. 
+To break this trade-off, conditions beyond the existing operating ranges must be explored. To accomplish 
+this objective, rather than relying solely on ML, which is inherently limited to historical data confined to 
+these ranges, we developed a mechanistic model that explicitly represents the fundamental principles of 
+mass-transfer and binding phenomena. This mechanism-based approach enables exploration beyond 
+current process boundaries, uncover new operating ranges, and achieve simultaneous improvements in 
+both yield and HMW clearance.
+Table 3. Selected features for machine learning.
+Phase
+Features/Process parameters (PPs)
+Column performance
+Column plates (PP1), cycles (PP2)
+Sample conditioning
+Diluent conductivity (PP3), diluent pH (PP4), Added NaCl Amount (PP5)
+Equilibration
+Conductivity (PP6), pH (PP7)
+Load
+Conductivity (PP8), loading density (PP9), sample loading amount (PP10)
+Wash-1
+Conductivity (PP11), pH (PP12)
+Wash-2
+Conductivity (PP13), pH (PP14), peak height1(PP15), volume (PP16)
+Elution
+Conductivity (PP17), pH (PP18), eluate collection start (PP19) & end UV (PP20), temperature (PP21)
+Note: Eluate collection was based on peak height in the Wash-2 phase.
+MABS
+9
+
+
+[Page 10]
+In silico optimization using mechanistic model
+To refine the key process parameters identified by AI/ML and enhance process outcomes, mechanistic 
+modeling was integrated to provide a quantitative and systematic approach for understanding and precisely 
+predicting process performances. The mechanistic model for AEX combined the EDM for mass transfer and 
+the SMA model for adsorption. The mechanistic model was calibrated using four gradient elution experi­
+ments covering a loading density of 1.0 to 3.8 g/L and gradient elution lengths of 15 and 20 CV. The SMA 
+model parameters were estimated with normalized root mean square errors of less than 0.031 for all 
+calibration experiments (Figure 3a), demonstrating excellent model fidelity. The verification experiments 
+further confirmed the model’s robust extrapolation and predictive capabilities (Figure 3b).
+For process optimization with the mechanistic model, six key operating parameters (salt concentrations 
+and column volumes of the Load, Wash-1, and Wash-2 stages) were focused, which were guided by ML- 
+identified critical variables. A stepwise optimization strategy using genetic algorithms was conducted to 
+balance the yield improvement with process complexity. Initial optimization of the Load stage alone was 
+Figure 3. Workflow of mechanistic modeling. (a) Calibration experiments and mechanistic model fitting results for different 
+linear salt gradient elution lengths and loading densities. The points represent experimental data, while the lines represent 
+model simulations. Different colors represent various components. (b) Verification experiment and model simulation under 
+salt stepwise elution. The points represent experimental data, and the lines represent model simulations. Different colors 
+represent different components. (c) Ten runs of process optimization across six operating parameters. Color bars on the left 
+represent salt concentration at the Load, Wash-1, and Wash-2 stages. Color bars on the right represent column volumes at 
+the Load, Wash-1, and Wash-2 stages. (d) Contour map of design space. The average process yield and HMW level of the 
+existing commercial process were normalized to one, and the other data were compared with the averages as relative 
+values. The color bar represents relative process yield, while the white dashed lines represent the relative HMW content.
+10
+R.-Z. WANG ET AL.
+
+
+[Page 11]
+insufficient to meet the targets. Therefore, optimization was extended to include parameters from the 
+Wash-1 and Wash-2 stages. As shown in Figure 3c, the results of 10 genetic algorithm optimization runs 
+(totaling 46,500 in silico simulation) showed a high degree of consistency, with an average coefficient of 
+variation of 3.19% across the six operating parameters. The optimization results revealed that salt concen­
+trations of the Load, Wash-1, and Wash-2 stages converged, while column volumes approached their set 
+limits. This led to the proposal of a process simplification: merging the Wash-1 and Wash-2 into a single 
+wash stage, and unifying salt concentrations across these stages (Figure 4). The lab-scale verification study 
+demonstrated a significant improvement in yield (increased by 7%) and HMW removal (decreased by 33%), 
+indicating that the yield-purity trade-off can be overcome by implementing a hybrid ML/mechanistic 
+modeling framework.
+Figure 4. Process improvement by mechanistic modeling. (a) Original process diagram. The sub-figures above the 
+conductivity curve represent the HPLC diagrams. (b) Mechanistic model-based process development. Color bars represent 
+the optimization generations. (c) Optimized process diagram. The sub-figures above the conductivity curve represent the 
+HPLC diagrams.
+MABS
+11
+
+
+[Page 12]
+In addition, sensitivity analysis was performed using the mechanistic model to assess the impact of 
+operational parameter variations. Figure 3d presents the design space for the optimized process with target 
+constraints. The contour map shows that even minor deviations in salt concentration resulted in notable 
+effects, with approximately 4% fluctuations in yield and 30% fluctuations in HMW level. These findings 
+underscore the critical importance of sub-millimolar precision in salt concentration for effective process 
+control. This aligns with the high SHAP contribution of the conductivity parameter in the ML model, 
+extending beyond statistical correlation by quantifying the underlying physical and chemical mechanisms.
+Process confirmation and robustness evaluation
+To confirm the robustness of the optimized process, six verification runs were conducted: three at 46 mL 
+column volume (lab-scale) and three at 1.8 L (pilot-scale). Additionally, DoE was used to evaluate the 
+impact of variations in wash conductivity and volume on yield and HMW impurity content. As shown in 
+Figure 5a,b, compared to control data from the 423 commercial manufacturing runs, the optimized process 
+demonstrated higher yield and superior HMW removal, achieving a 6%–12% increase in yield and a 4%– 
+33% reduction in HMW level across different scales. Meanwhile, the relative HMW content is notably 
+a
+b
+c
+d
+Relative process yield:
+<100%
+Relative process yield: >106%
+Relative HMW level:
+>100%
+Relative HMW level: <67%
+Relative HMW
+level ↑
+Relative process yield↑
+Figure 5. Process confirmation and robustness evaluation. Comparison of the optimized process with the existing 
+commercial process in terms of (a) relative process yield and (b) relative HMW level. The control represents the existing 
+commercial process in a chromatographic column with an internal diameter (I.D.) of 45 cm. The lab-scale (I.D. 1.6 cm), pilot- 
+scale (I.D. 10 cm) and commercial manufacturing-scale (I.D. 45 cm) indicate the optimized process verified in columns with I. 
+D. 1.6 cm, I.D. 10 cm and I.D. 45 cm, respectively. The average process yield and HMW level of the existing commercial 
+process were normalized to 1, and the other data were compared with the averages as relative values. (c) Contour plot 
+(white area) showing the operating ranges of the optimized process with comparable performance to the existing 
+commercial process. As indicated by the big blue arrow, with the decrease of wash volume and wash conductivity, the 
+relative process yield and relative HMW level would increase simultaneously. (d) Contour plot (white area) showing the 
+operating ranges of the optimized process with superior performance to the existing commercial process.
+12
+R.-Z. WANG ET AL.
+
+
+[Page 13]
+higher at the pilot scale (Figure 5b). This is likely due to the relatively higher agitation, which led to the 
+increase of HMW level since this molecule is sensitive to the shear force.
+To further assess process robustness, the wash buffer conductivity range (2.0 ± 0.2 mS/cm) and wash 
+volume range (6.0 ± 2.0 CV) were evaluated, which were carried out before PPQ. As shown in Figure 5c, 
+when wash conductivity was adjusted within ±0.1 mS/cm (sub-millimolar variation) and wash volume within 
+±1.0 CV around the optimized set points, the process exhibited either higher purity at the same yield or 
+increased yield while maintaining equivalent purity compared to the control. These results were consistent 
+with predictions from the mechanistic evaluation (Figure 3d). A representative chromatogram of the AEX 
+process with Q BB after optimization is shown in Supplementary Figure S1, which was well simulated by the 
+mechanistic model. Furthermore, the process could be further modulated to achieve both higher yield and 
+lower HMW level, as shown in Figure 5d. These findings highlight the importance of mechanistic models for 
+process optimization within narrow operating ranges while ensuring higher yield and purity.
+Although these operational ranges may appear narrow in the context of commercial manufacturing, 
+historical data suggest that these parameters can be effectively controlled. The optimized process was 
+verified through six full-scale PPQ runs. As shown in Figure 5a,b, the optimized process resulted in 
+a 12% increase in yield and a 33% reduction in HMW content compared to the control process. Based on 
+these promising results, the process changes were successfully implemented. Importantly, the yield 
+improvement is expected to generate annual cost savings of several million dollars, underscoring the 
+substantial economic benefit of this optimization.
+Discussion
+This study introduces a novel hybrid framework that integrates data-driven ML with physics-based mechanistic 
+modeling to optimize biopharmaceutical downstream process. This approach is particularly effective for pro­
+cesses with large volumes of manufacturing data, where the challenge of improving yield while simultaneously 
+reducing impurities level remains substantial. The hybrid framework effectively addresses the yield-purity trade- 
+off and has successfully transitioned from lab-scale studies to commercial-scale manufacturing, making 
+a groundbreaking integration of ML and mechanistic modeling. The success of this framework stems from 
+innovative methodologies that leverage the complementary strengths of both ML and mechanistic modeling.
+A key distinguishing feature is that our ML algorithms utilized commercial manufacturing data, setting it 
+apart from traditional methods such as DoE or high-throughput screening experiments. Commercial datasets 
+provide a more representative view of true process variability compared to laboratory-generated data. By 
+analyzing more than 400 commercial batches, our ML methodology successfully identified three critical 
+process parameters out of over 20 potential candidates. This data-driven approach effectively uncovers 
+complex, non-linear relationships that are often missed by conventional statistical approaches, mitigating 
+the subjectivity of traditional risk assessment methods and reducing the need for additional experimentation. 
+Importantly, the accuracy of ML improves with increased availability of commercial data. However, optimiz­
+ing within the current parameter range using ML alone does not meet the dual objective of increasing yield 
+while reducing HMW content simultaneously. To address this limitation, we developed a mechanistic model 
+to explore new operating ranges beyond those defined by existing parameter range. By explicitly representing 
+binding and mass-transfer phenomena, the mechanistic model provides a predictive, physics-based founda­
+tion for identifying new operating conditions that could not be uncovered by ML alone.
+While mechanistic model can accurately predict chromatographic profiles and facilitate process optimi­
+zation, achieving optimal conditions requires the exploration of a vast number of parameter combinations, 
+which is often computationally intensive and experimentally impractical. Unlike other hybrid 
+methodologies,42 our framework integrates ML to enhance the mechanistic model’s performance. By first 
+identifying the most influential critical process parameters, ML streamlines the mechanistic model, enabling 
+it to focus on the variables most relevant to process performance and regulatory risk. This integration 
+reduces experimental workload by over 90% and significantly enhances the process understanding. Notably, 
+this hybrid framework improved both yield and product quality of the existing commercial process without 
+requiring major modifications, demonstrating its feasibility and scalability for industrial implementation.
+The process procedure was consistent across laboratory, pilot, and commercial scales. The process 
+change was categorized as moderate following communication with the regulatory agency, and approval 
+MABS
+13
+
+
+[Page 14]
+was granted based on a comprehensive analytical comparability study. This study focused on pre- and post- 
+change products, including rigorous assessment of identity, purity, potency, stability, and other CQAs. The 
+data demonstrated high comparability, with no adverse impact on product quality and improved HMW 
+removal. Therefore, clinical or non-clinical data were not required for this moderate change.
+Despite these successes, the framework faces certain limitations. Its effectiveness is contingent on data 
+availability, requiring a substantial dataset (e.g., >30 batches) for reliable ML predictions. Furthermore, the 
+current mechanistic model focuses on HMW impurities, while other CQAs, such as positional isomers, remain 
+to be integrated. Finally, the model currently assumes consistency in resin attributes (e.g., ligand density, pore 
+size); future work should incorporate this material variability to enhance predictive accuracy and robustness.
+A key limitation of the present work is its reliance on historical data for offline optimization, lacking the 
+capability for real-time control. The implementation of real-time Process Analytical Technology (PAT) 
+tools, such as online Raman or near-infrared spectroscopy, remains a critical future step to enable dynamic 
+adjustments of critical process parameters based on live monitoring of CQAs43–48. The implementation of 
+these in-line or on-line PAT tools will require a rigorous, lifecycle approach encompassing method 
+development, model validation, and regulatory alignment. This includes qualifying PAT sensors (IQ/OQ/ 
+PQ), developing and validating robust chemometric models to ensure predictive accuracy, and establishing 
+a control strategy that defines how real-time data will be used to adjust critical process parameters. 
+Furthermore, this effort will involve engaging with evolving regulatory frameworks 49,50 for PAT and Real- 
+Time Release Testing (RTRT), and fostering cross-sector collaboration to advance the development of 
+adaptive manufacturing systems based on communal datasets and shared best practices.
+In summary, the hybrid ML-mechanistic framework developed in this study offers distinct advantages 
+for biomanufacturing, including efficiency through a dramatic reduction in experimental workload, scal­
+ability across equipment scales, and enhanced regulatory compliance by coupling data-driven insights with 
+mechanistic understanding. Based on historical data from over 400 commercial lots, three critical process 
+parameters were identified via ML, reducing the number of parameters optimized by mechanistic models. 
+Subsequent in silico optimization across more than 40,000 scenarios successfully broke the yield-purity 
+trade-off, resulting in a 12% increase in yield alongside a 33% reduction in HMW impurities. The optimized 
+process condition was successfully verified by 6 full-scale PPQ runs (18 runs of AEX in total), consistently 
+demonstrating scalability and process robustness. The process change was categorized as moderate, and 
+approval was granted based on a comprehensive analytical comparability study.
+Ultimately, this work lays the foundation for the future of smart biomanufacturing and Industry 4.0, 
+where AI-driven process control and automated, adaptive systems will drive the next generation of 
+biopharmaceutical production, ensuring higher yields, lower costs, and better product quality. Moreover, 
+future research should focus on digital twins integrating real-time PAT and RTRT to enable dynamic 
+process control for intelligent biomanufacturing.
+Acknowledgments
+We are grateful to Jie (Cisy) Yan for her steadfast organizational support and strategic insight, which were instrumental 
+in securing the critical resources and fostering the collaborative partnerships essential to this endeavor. Her profes­
+sionalism and dedication greatly facilitated the project’s advancement and operational coherence. We would also like to 
+express our deepest gratitude to Wei-Feng Ge, Qian Sun, Ying-Wu Wang, Jin-Liang Zhang, Jun-Cai Wang, Ren-Huan 
+Huang, Cheng-Nan Mao, and Xiao-Ming Zhang for their visionary leadership in advancing this project.
+Author contributions
+Rong-Zhu Wang: conceptualization, formal analysis, methodology, visualization, writing – original draft, project 
+administration. Yu-Xin Liao: data curation, formal analysis, methodology, software, visualization, writing – original 
+draft. Teng-Long Wang: data curation, formal analysis, methodology, software, visualization, writing – original draft. 
+Xiao-Yang Jing: data curation, formal analysis, methodology, software, visualization, writing – original draft. Guang 
+Yang: data curation, formal analysis, methodology, software, visualization. Hao Wang: investigation. Feng Xiao: 
+methodology. Yi Zong: methodology. Yan Yang: methodology, supervision and writing – review & editing. Ye Yuan: 
+methodology. Shan-Jing Yao: writing – review & editing. Xuan Xian: supervision. Lei Jin: supervision. Dong-Qiang 
+Lin: supervision and writing – review & editing. Yun (Kenneth) Kang: supervision and writing – review & editing.
+14
+R.-Z. WANG ET AL.
+
+
+[Page 15]
+Disclosure statement
+No potential conflict of interest was reported by the author(s).
+Funding
+This work was supported by Project [GenSci-G023], Modeling Tools and Process Development for Intelligent 
+Manufacturing of Biological Downstream Processes, which received significant support from Xiu-Mei Sheng.
+ORCID
+Rong-Zhu Wang 
+http://orcid.org/0000-0001-9283-3277
+Dong-Qiang Lin 
+http://orcid.org/0000-0002-0504-8391
+List of abbreviation
+AEX 
+anion-exchange chromatography
+AI 
+artificial intelligence
+ANN 
+artificial neural network
+CHO 
+Chinese hamster ovary
+CPP 
+critical process parameter
+CQA 
+critical quality attribute
+CV 
+column volume
+DoE 
+design of experiments
+EDM 
+equilibrium dispersive model
+FDA 
+Food and Drug Administration
+HMW 
+high molecular weight
+HPLC 
+high performance liquid chromatography
+ICH 
+International Council for Harmonization of Technical Requirements for Pharmaceuticals for Human Use
+IoT 
+Internet of things
+I.D. 
+internal diameter
+KPP 
+key process parameter
+LHS 
+Latin hypercube sampling
+ML 
+machine learning
+PAT 
+process analytical technology
+PP 
+process parameter
+PPQ 
+process performance qualification
+PEG 
+polyethylene glycol
+QbD 
+Quality by Design
+R2 
+coefficient of determination
+RTRT 
+real-time release testing
+SEC 
+size exclusion chromatography
+SHAP 
+SHapley Additive exPlanations
+SMA 
+steric mass action
+UV 
+ultraviolet
+Data availability statement
+The data are not publicly available due to some information that could compromise the privacy of the commercial 
+process.
+References
+1. Hakemeyer C, McKnight N, St John R, Meier S, Trexler-Schmidt M, Kelley B, Zettl F, Puskeiler R, Kleinjans A, 
+Lim F, et al. Process characterization and design space definition. Biologicals. 2016;44(5):306–318. doi: 10.1016/j. 
+biologicals.2016.06.004  .
+2. Agarwal H, Rathore AS, Hadpe SR, Alva SJ. Artificial neural network (ANN)-based prediction of depth filter 
+loading capacity for filter sizing. Biotechnol Prog. 2016;32(6):1436–1443. doi: 10.1002/btpr.2329  .
+MABS
+15
+
+
+[Page 16]
+3. Jiang Q, Seth S, Scharl T, Schroeder T, Jungbauer A, Dimartino S. Prediction of the performance of pre-packed 
+purification columns through machine learning. J Sep Sci. 2022;45(8):1445–1457. doi: 10.1002/jssc.202100864  .
+4. Kang L, Wu B, Zhou B, Tan P, Kang YK, Yan Y, Zong Y, Li S, Liu Z, Hong L. AI-enabled alkaline-resistant 
+evolution of protein to apply in mass production. Elife. 2025;13. doi: 10.7554/eLife.102788  .
+5. Kirdar AO, Green KD, Rathore AS. Application of multivariate data analysis for identification and successful 
+resolution of a root cause for a bioprocessing application. Biotechnol Prog. 2008;24(3):720–726. doi: 10.1021/ 
+bp0704384  .
+6. Nagy B, Galata DL, Farkas A, Nagy ZK. Application of artificial neural networks in the process analytical 
+technology of pharmaceutical manufacturing-a review. Aaps J. 2022;24(4):74. doi: 10.1208/s12248-022-00706-0  .
+7. Pham TD, Manapragada C, Sun Y, Bassett R, Aickelin U. A scoping review of supervised learning modelling and 
+data-driven optimisation in monoclonal antibody process development. Digit Chem Eng. 2023;7:100080. doi: 10. 
+1016/j.dche.2022.100080  .
+8. Puranik A, Dandekar P, Jain R. Exploring the potential of machine learning for more efficient development and 
+production of biopharmaceuticals. Biotechnol Prog. 2022;38(6):e3291. doi: 10.1002/btpr.3291  .
+9. Rathore AS, Nikita S, Thakur G, Mishra S. Artificial intelligence and machine learning applications in biophar­
+maceutical manufacturing. Trends Biotechnol. 2023;41(4):497–510. doi: 10.1016/j.tibtech.2022.08.007  .
+10. Richter J, Wang Q, Lange F, Thiel P, Yilmaz N, Solle D, Zhuang X, Beutel S. Machine learning‐powered optimization 
+of a CHO cell cultivation process. Biotechnol Bioeng. 2025;122(5):1153–1164. doi: 10.1002/bit.28943  .
+11. Walsh I, Myint M, Nguyen-Khuong T, Ho YS, Ng SK, Lakshmanan M. Harnessing the potential of machine 
+learning for advancing “quality by design” in biomanufacturing. Mabs-austin. 2022;14(1):2013593. doi: 10.1080/ 
+19420862.2021.2013593  .
+12. Kodumuru R, Sarkar S, Parepally V, Chandarana J. Artificial intelligence and internet of things integration in 
+pharmaceutical manufacturing: a smart synergy. Pharmaceutics. 2025;17(3):290. doi: 10.3390/pharmaceu 
+tics17030290  .
+13. Chen YC, Yao SJ, Lin DQ. Parameter-by-parameter method for steric mass action model of ion exchange 
+chromatography: theoretical considerations and experimental verification. J Chromatogr A. 2022;1680:463418. 
+doi: 10.1016/j.chroma.2022.463418  .
+14. Chen YC, Yao SJ, Lin DQ. Parameter-by-parameter method for steric mass action model of ion exchange 
+chromatography: simplified estimation for steric shielding factor. J Chromatogr A. 2023;1687:463655. doi: 10. 
+1016/j.chroma.2022.463655  .
+15. Chen YC, Lu HL, Wang RZ, Sun G, Zhang XQ, Liang JQ, Jungbauer A, Yao SJ, Lin DQ. Standardized approach 
+for accurate and reliable model development of ion‐exchange chromatography based on parameter‐by‐para­
+meter method and consideration of extra‐column effects. Biotechnol J. 2024;19(3):2300687. doi: 10.1002/biot. 
+202300687  .
+16. Liao YX, Shi C, Zhong XZ, Chen XJ, Chen R, Yao SJ and Lin DQ. Prediction of pH Gradient Elution of Ion 
+Exchange Chromatography for Antibody Charge Variants Separation Based on Salt Gradient Elution 
+Experiments. Biotech Jou. 2025;20(5). doi: 10.1002/biot.70029  .
+17. Saleh D, Wang G, Mueller B, Rischawy F, Kluters S, Studts J, Hubbuch J. Cross-scale quality assessment of 
+a mechanistic cation exchange chromatography model. Biotechnol Prog. 2021;37(1):e3081. doi: 10.1002/btpr.3081  .
+18. Shi C, Chen XJ, Zhong XZ, Yang Y, Lin DQ, Chen R. Realization of digital twin for dynamic control toward 
+sample variation of ion exchange chromatography in antibody separation. Biotechnol Bioeng. 2024;121 
+(5):1702–1715. doi: 10.1002/bit.28660  .
+19. Silva TC, Eppink M, Ottens M. Digital twin in high throughput chromatographic process development for 
+monoclonal antibodies. J Chromatogr A. 2024;1717:464672. doi: 10.1016/j.chroma.2024.464672  .
+20. Yang YX, Chen YC, Yao SJ, Lin DQ. Parameter-by-parameter estimation method for adsorption isotherm in 
+hydrophobic interaction chromatography. J Chromatogr A. 2024;1716:464638. doi: 10.1016/j.chroma.2024.464638  .
+21. Yang YX, Lin ZY, Chen YC, Yao SJ, Lin DQ. Modeling multi-component separation in hydrophobic interaction 
+chromatography with improved parameter-by-parameter estimation method. J Chromatogr A. 
+2024;1730:465121. doi: 10.1016/j.chroma.2024.465121  .
+22. Altern SH, Lyall JY, Welsh JP, Burgess S, Kumar V, Williams C, Lenhoff AM, Cramer SM. High-throughput in 
+silico workflow for optimization and characterization of multimodal chromatographic processes. Biotechnol 
+Prog. 2024;40(6):e3483. doi: 10.1002/btpr.3483  .
+23. Hahn T, Geng N, Petrushevska-Seebach K, Dolan ME, Scheindel M, Graf P, Takenaka K, Izumida K, Li L, Ma Z, 
+et al. Mechanistic modeling, simulation, and optimization of mixed-mode chromatography for an antibody 
+polishing step. Biotechnol Prog. 2023;39(2):e3316. doi: 10.1002/btpr.3316  .
+24. Hess R, Yun D, Saleh D, Briskot T, Grosch J-H, Wang G, Schwab T, Hubbuch J. Standardized method for 
+mechanistic modeling of multimodal anion exchange chromatography in flow through operation. J Chromatogr 
+A. 2023;1690:463789. doi: 10.1016/j.chroma.2023.463789  .
+25. Shi C, Gao ZY, Zhang QL, Yao SJ, Slater NKH, Lin DQ. Model-based process development of continuous 
+chromatography for antibody capture: a case study with twin-column system. J Chromatogr A. 
+2020;1619:460936. doi: 10.1016/j.chroma.2020.460936  .
+16
+R.-Z. WANG ET AL.
+
+
+[Page 17]
+26. Shi C, Zhang QL, Jiao B, Chen XJ, Chen R, Gong W, Yao SJ, Lin DQ. Process development and optimization of 
+continuous capture with three-column periodic counter-current chromatography. Biotechnol Bioeng. 2021;118 
+(9):3313–3322. doi: 10.1002/bit.27689  .
+27. Sun YN, Chen WW, Yao SJ, Lin DQ. Model-assisted process development, characterization and design of 
+continuous chromatography for antibody separation. J Chromatogr A. 2023;1707:464302. doi: 10.1016/j.chroma. 
+2023.464302  .
+28. Sun YN, Shi C, Zhong XZ, Chen XJ, Chen R, Zhang QL, Yao SJ, Jungbauer A, Lin DQ. Model-based evaluation 
+and model-free strategy for process development of three-column periodic counter-current chromatography. 
+J Chromatogr A. 2022;1677:463311. doi: 10.1016/j.chroma.2022.463311  .
+29. Chen G, Umatheva U, Pagano J, Yu D, Ghose S, Li Z, Ghosh R. High-resolution purification of a therapeutic 
+PEGylated protein using a cuboid packed-bed device. J Chromatogr A. 2020;1630:461524. doi: 10.1016/j.chroma. 
+2020.461524  .
+30. Pfister D, Morbidelli M. Process for protein PEGylation. J Control Release. 2014;180:134–149. doi: 10.1016/j. 
+jconrel.2014.02.002  .
+31. Thi Nguyen NT, Yun S, Lim DW, Lee EK. Shielding effect of a PEG molecule of a mono-PEGylated peptide 
+varies with PEG chain length. Prep Biochem Biotechnol. 2018;48(6):522–527. doi: 10.1080/10826068.2018. 
+1466157  .
+32. Biau G, Scornet E. A random forest guided tour. Test. 2015;25(2):1–31.
+33. Cortes C, Vapnik V. Support-vector networks. Mach Learn. 1995;20(3):273–297. doi: 10.1023/A:1022627411411  .
+34. Chen T, Guestrin C. Xgboost: a scalable tree boosting system. arXiv:1603.02754v3 [cs.LG]. 2016. https://arxiv. 
+org/pdf/1603.02754 .
+35. Meng Q. LightGBM: a highly efficient gradient boosting decision tree. 31st Conference on Neural Information 
+Processing Systems (NIPS 2017); 2017. Long Beach (CA), USA. https://proceedings.neurips.cc/paper_files/ 
+paper/2017/file/6449f44a102fde848669bdd9eb6b76fa-Paper.pdf .
+36. Lecun Y, Bengio Y, Hinton G. Deep learning. Nature. 2015;521(7553):436. doi: 10.1038/nature14539  .
+37. Arlot S, Celisse A. A survey of cross-validation procedures for model selection. Stat Surv. 2010;4(2010):40–79.
+38. Lundberg SM, Lee S-I. A unified approach to interpreting model predictions. Proceedings of the 31st 
+International Conference on Neural Information Processing Systems; 2017. Long Beach (CA), USA. https:// 
+papers.nips.cc/paper_files/paper/2017/file/8a20a8621978632d76c43dfd28b67767-Paper.pdf .
+39. McKay MD, Conover RJBJ. A comparison of three methods for selecting values of input variables in the analysis 
+of output from a computer code. Technometrics. 1979;21(2):239–245.
+40. Shahriari B, Swersky K, Wang Z, Adams RP, De Freitas N. Taking the human out of the loop: a review of 
+Bayesian optimization. Proc IEEE. 2015;104(1):148–175.
+41. Holland JH, editor. Chapter 4: Schemata. Adaptation in natural and artificial systems: an introductory analysis 
+with applications to biology, control, and artificial intelligence. The MIT Press; 1992. p 211.
+42. Michalopoulou F, Papathanasiou MM. An approach to hybrid modelling in chromatographic separation 
+processes. Digit Chem Eng. 2025;14:100215. doi: 10.1016/j.dche.2024.100215  .
+43. Kim NA, Kar S, Li Z, Das TK, Carpenter JF. Mimicking low pH virus inactivation used in antibody manufactur­
+ing processes: effect of processing conditions and biophysical properties on antibody aggregation and particle 
+formation. J Pharm Sci. 2021;110(9):3188–3199. doi: 10.1016/j.xphs.2021.06.002  .
+44. Nitika N, Keerthiveena B, Thakur G, Rathore AS. Convolutional neural networks guided Raman spectroscopy as 
+a process analytical technology (PAT) tool for monitoring and simultaneous prediction of monoclonal antibody 
+charge variants. Pharm Res. 2024;41(3):463–479. doi: 10.1007/s11095-024-03663-9  .
+45. Lin YK, Leong HY, Ling TC, Lin D-Q, Yao S-J. Raman spectroscopy as process analytical tool in downstream 
+processing of biotechnology. Chin J Chem Eng. 2021;30:204–211. doi: 10.1016/j.cjche.2020.12.008  .
+46. Wang J, Chen J, Studts J, Wang G. Simultaneous prediction of 16 quality attributes during protein A chromato­
+graphy using machine learning based Raman spectroscopy models. Biotech Bioeng. 2024;121(5):1729–1738. doi:  
+10.1002/bit.28679  .
+47. Rolinger L, Hubbuch J, Rudt M. Monitoring of ultra- and diafiltration processes by Kalman-filtered Raman 
+measurements. Anal Bioanal Chem. 2023;415(5):841–854. doi: 10.1007/s00216-022-04477-7  .
+48. Chen J, Wang J, Hess R, Wang G, Studts J, Franzreb M. Application of Raman spectroscopy during pharma­
+ceutical process development for determination of critical quality attributes in protein a chromatography. 
+J Chromatogr A. 2024;1718:464721. doi: 10.1016/j.chroma.2024.464721  .
+49. Food and Drug Administration. Considerations for the use of artificial intelligence to support regulatory 
+decision-making for drug and biological products. 2025. https://www.fda.gov/regulatory-information/search- 
+fda-guidance-documents/considerations-use-artificial-intelligence-support-regulatory-decision-making-drug- 
+and-biological .
+50. Manzano T, Fernàndez C, Ruiz T, Richard H. Artificial intelligence algorithm qualification: a quality by design 
+approach to apply artificial intelligence in pharma. PDA J Pharm Sci Technol. 2021;75(1):100. doi: 10.5731/ 
+pdajpst.2019.011338.
+MABS
+17
