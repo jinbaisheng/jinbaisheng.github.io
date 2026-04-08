@@ -3,108 +3,358 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Protein A 层析 | 蛋白纯化文献赏析</title>
-    <meta name="description" content="Protein A 亲和层析工艺优化与技术创新">
-    <link rel="canonical" href="https://jinbaisheng.github.io/tags/protein-a/">
+    <title>MabSelect VH3 Protein A 亲和层析读书笔记</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #f5f7fa; color: #333; line-height: 1.6; }
-        a { text-decoration: none; color: inherit; }
-        
-        .nav-bar { background: white; padding: 15px 30px; display: flex; align-items: center; gap: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); position: sticky; top: 0; z-index: 100; flex-wrap: wrap; }
-        .nav-link { color: #666; font-size: 0.95em; }
-        .nav-link:hover { color: #667eea; }
-        .nav-sep { color: #ccc; }
-        
-        .header { background: linear-gradient(135deg, #3498db, #2980b9); color: white; padding: 50px 20px; text-align: center; }
-        .header h1 { font-size: 2em; margin-bottom: 10px; }
-        .header p { font-size: 1.1em; opacity: 0.9; }
-        
-        .container { max-width: 1000px; margin: 40px auto; padding: 0 20px; }
-        .section-title { font-size: 1.4em; color: #2c3e50; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 3px solid #3498db; }
-        
-        .article-list { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
-        .article-item { padding: 20px 25px; border-bottom: 1px solid #eee; transition: background 0.3s; }
-        .article-item:last-child { border-bottom: none; }
-        .article-item:hover { background: #f8f9fa; }
-        .article-title { font-size: 1.15em; font-weight: 600; color: #2c3e50; margin-bottom: 8px; }
-        .article-title:hover { color: #3498db; }
-        .article-desc { color: #666; font-size: 0.9em; margin-bottom: 10px; line-height: 1.6; }
-        .article-meta { display: flex; gap: 15px; color: #999; font-size: 0.85em; flex-wrap: wrap; }
-        .article-tags { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 8px; }
-        .tag { padding: 3px 10px; background: #f0f2f5; border-radius: 12px; font-size: 0.8em; color: #666; }
-        
-        .empty-state { text-align: center; padding: 60px 20px; color: #999; }
-        .empty-state .icon { font-size: 3em; margin-bottom: 15px; }
-        
-        .back-btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; background: #3498db; color: white; border-radius: 8px; font-size: 0.95em; transition: all 0.3s; margin-top: 30px; }
-        .back-btn:hover { background: #2980b9; transform: translateY(-1px); }
-        
-        .footer { background: #2c3e50; color: #bdc3c7; text-align: center; padding: 30px 20px; margin-top: 50px; }
-        .footer-links { display: flex; justify-content: center; gap: 25px; margin-bottom: 15px; flex-wrap: wrap; }
-        .footer-links a { color: #ecf0f1; }
-        .footer-links a:hover { color: white; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        .content {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: #667eea;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+            margin: 30px 0 20px 0;
+            font-size: 1.8em;
+        }
+        h3 {
+            color: #764ba2;
+            margin: 25px 0 15px 0;
+            font-size: 1.4em;
+        }
+        h4 {
+            color: #555;
+            margin: 20px 0 10px 0;
+            font-size: 1.2em;
+        }
+        p {
+            margin: 15px 0;
+            text-align: justify;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.95em;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #667eea;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        ul, ol {
+            margin: 15px 0 15px 30px;
+        }
+        li {
+            margin: 8px 0;
+        }
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: "Consolas", "Monaco", monospace;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 15px 0;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .back-link:hover {
+            background-color: #764ba2;
+        }
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            color: #666;
+            font-size: 0.9em;
+        }
     </style>
 </head>
 <body>
-    <nav class="nav-bar">
-        <a href="/" class="nav-link">首页</a>
-        <span class="nav-sep">›</span>
-        <a href="/categories/antibody/" class="nav-link">抗体纯化</a>
-        <span class="nav-sep">›</span>
-        <span class="nav-link">Protein A 层析</span>
-    </nav>
-    
-    <header class="header">
-        <h1>🧬 Protein A 亲和层析</h1>
-        <p>Protein A 亲和层析工艺优化、填料选择、洗脱条件优化与技术创新</p>
-    </header>
-    
-    <main class="container">
-        <h2 class="section-title">📚 相关文献</h2>
-        <div class="article-list">
-            <div class="article-item">
-                <a href="/posts/amino-acid-ph-shift-protein-a/" class="article-title">氨基酸诱导 pH 偏移策略：革新 Protein A 层析洗脱工艺</a>
-                <p class="article-desc">药明生物团队研发的氨基酸诱导 pH 偏移洗脱策略，解决低 pH 不稳定抗体的 Protein A 层析聚集难题</p>
-                <div class="article-meta">
-                    <span>📅 2026-04-04</span>
-                    <span>⭐ 精选</span>
-                </div>
-                <div class="article-tags">
-                    <span class="tag">Protein A</span>
-                    <span class="tag">抗体稳定</span>
-                    <span class="tag">聚集体去除</span>
-                    <span class="tag">单抗</span>
-                </div>
-            </div>
-            <div class="article-item">
-                <a href="/posts/protein-a-purification/" class="article-title">抗体 Protein A 亲和层析工艺优化</a>
-                <p class="article-desc">深入分析最新抗体纯化文献，从工业纯化工程师视角提炼实用工艺优化建议</p>
-                <div class="article-meta">
-                    <span>📅 2026-03-26</span>
-                </div>
-                <div class="article-tags">
-                    <span class="tag">Protein A</span>
-                    <span class="tag">亲和层析</span>
-                    <span class="tag">单抗</span>
-                    <span class="tag">双抗</span>
-                </div>
-            </div>
+    <div class="container">
+        <header>
+            <h1>MabSelect VH3 Protein A 亲和层析读书笔记</h1>
+            <p>三篇核心文献综合分析 | 整理日期: 2026-04-08</p>
+        </header>
+        
+        <div class="content">
+            <h1>MabSelect VH3 Protein A 亲和层析读书笔记</h1>
+<h2>概述</h2>
+<p>本次整理的三篇文献均围绕Cytiva推出的新型MabSelect VH3 Protein A亲和树脂展开，从不同应用场景系统验证了其独特的VH3结构域选择性结合性能及相较于常规Protein A树脂的纯化优势。第一篇来自药明生物的研究首次证实该树脂可基于VH3结构域数量差异分离抗体物种，同时具备常规Protein A不具备的高效聚体分离能力，25%聚体含量的样品经其纯化后聚体可降至2.9%；第二篇来自南京正大天晴的研究针对不对称双抗同源二聚体去除痛点，对比三种不同结合机制的Protein A树脂，发现MabSelect VH3可将双抗纯度提升至98.9%以上，且明确了当分子同时存在Fc亲和力和VH3数量差异时，Fc亲和力为分离主导因素；第三篇来自礼来制药的研究进一步将该树脂的应用场景拓展至VHH、Fab-VHH融合蛋白、单臂不对称抗体等新型抗体骨架，证实其对各类VH3类分子的结合容量与常规Protein A相当，同时可降低30%~70%的HCP残留，还能选择性去除组装相关杂质。三篇研究相互补充，为MabSelect VH3在复杂抗体纯化领域的工业应用提供了全面的实验依据。</p>
+<h2>文献一：MabSelect VH3聚体分离能力研究</h2>
+<h3>文献信息</h3>
+<ul>
+<li>标题: MabSelect VH3 Protein A affinity resin effectively separates antibody species containing different numbers of VH3 domain and shows improved aggregate separation capability</li>
+<li>作者: Wanyuan Dong, Rongrong Wang, Yifeng Li*</li>
+<li>单位: 药明生物下游工艺开发部，上海外高桥保税区</li>
+<li>发表时间: 2024年12月在线发表，2025年正式刊出</li>
+</ul>
+<h3>研究概要</h3>
+<p>Protein A亲和层析是抗体类分子纯化的金标准捕获步骤，但常规Protein A树脂同时结合抗体Fc区和VH3结构域，仅能通过Fc区结合实现捕获，无法区分带有相同Fc区但VH3结构域数量不同的杂质，且普遍缺乏聚体分离能力，聚体仅在无法进入孔隙或结合位点被包埋时才会随流穿去除，大幅增加后续精制步骤压力。MabSelect VH3为工程改造的Protein A配体树脂，Fc结合能力被完全敲除，仅保留VH3结构域亲和性，厂商宣称其可根据VH3数量差异分离杂质，但缺乏实际生产场景的验证数据，聚体分离潜力也未被系统评估。
+本研究以2个典型抗体生产案例（含1个VH3的不对称双抗、含2个VH3的单抗）及高聚体含量（25%）收获液为测试对象，对比MabSelect VH3与两款常规Protein A树脂（MabSelect PrismA、Praesto Jetted A50）的分离性能，采用线性pH梯度、pH-盐双梯度、分步洗脱等工艺，结合SDS-PAGE、SEC-HPLC等方法定性定量分析组分。结果显示：MabSelect VH3可实现不同VH3数量物种的有效分离，案例1中0个VH3的knob半抗随流穿去除，1个VH3的目标双抗与2个VH3的同源二聚体可通过梯度洗脱分离，优化梯度后目标产物收率达67.87%；案例2中1个VH3的半抗、2个VH3的目标单体、更高VH3数量的聚体依次洗脱实现分离。聚体分离性能方面，常规Protein A树脂的聚体与单体完全共洗脱，而MabSelect VH3可通过pH-盐双梯度实现基线分离，分步洗脱工艺可将25%聚体含量的样品纯化至聚体含量2.9%，同时步骤收率达74.5%。
+研究证实MabSelect VH3可同时去除产物相关杂质和聚体，大幅降低后续精制步骤压力，是复杂分子纯化场景下常规Protein A的更优替代。</p>
+<h3>问题痛点</h3>
+<ol>
+<li>双特异性抗体等复杂分子的杂质（半抗、同源二聚体）与产物带有相同Fc区，仅存在VH3数量差异，常规Protein A无法分离，需额外增加精制步骤，提升工艺复杂度和成本。</li>
+<li>常规Protein A无聚体分离能力，收获液聚体含量高时会增加后续步骤负载，甚至导致最终产品聚体不合格。</li>
+<li>新型MabSelect VH3的实际应用性能缺乏生产场景验证数据，无法支撑工艺开发的树脂选型决策。</li>
+</ol>
+<h3>解决方案</h3>
+<ol>
+<li>采用仅结合VH3结构域的MabSelect VH3作为捕获介质，基于不同VH3数量物种的结合强度差异，通过梯度洗脱实现分离。</li>
+<li>针对聚体分离需求，优化洗脱工艺，采用pH-盐双梯度、分步洗脱放大单体与聚体的结合强度差异，实现捕获阶段聚体去除。</li>
+<li>通过2个实际生产案例和高聚体挑战实验，系统验证树脂的杂质分离和聚体去除性能，明确适用场景和工艺参数。</li>
+</ol>
+<h3>研究方法</h3>
+<h4>1. 实验材料</h4>
+<ul>
+<li>试剂：乙酸钠、氯化钠、Tris等购自Merck，乙酸购自J.T. Baker，电泳相关试剂购自Thermo Fisher和GenScript，层析树脂MabSelect PrismA、MabSelect VH3购自Cytiva，Praesto Jetted A50购自Purolite，SEC柱购自TOSOH。</li>
+<li>抗体样品：3种目标分子均由CHO-K1稳转细胞表达，14天培养后收获：案例1为含1个VH3的不对称双抗，杂质为0个VH3的knob半抗、2个VH3的hole-hole同源二聚体；案例2为含2个VH3的同源二聚体单抗，杂质为1个VH3的半抗和聚体；挑战样品为聚体含量25%的单抗收获液。</li>
+</ul>
+<h4>2. 仪器设备</h4>
+<p>采用AKTA pure 150层析系统开展实验，Mettler-Toledo pH/电导率仪检测缓冲液，NanoDrop 2000测定蛋白浓度，Agilent 1260液相系统用于SEC-HPLC分析，GenScript eStain L1用于SDS-PAGE染色，Applikon生物反应器用于细胞培养。</p>
+<h4>3. 层析实验方法</h4>
+<ul>
+<li><strong>MabSelect VH3层析</strong>：采用Tricorn 5/150柱（内径0.5 cm，床高15.3 cm，柱体积约3.0 mL）。VH3数量差异物种分离实验的上样载量为10 mg/mL树脂，平衡后经pH 7.4 Tris缓冲液、pH 5.5乙酸钠缓冲液洗涤，采用0-100% pH 3.0乙酸缓冲液20 CV线性梯度洗脱，案例1额外采用58%-100% B 30 CV的浅梯度提升分离度。聚体分离实验上样载量为30 mg/mL树脂，分别采用线性pH梯度、pH-盐双梯度（洗脱液含300 mM NaCl）、分步双梯度洗脱，所有实验流速184 cm/h，停留时间5 min。</li>
+<li><strong>对照Protein A层析</strong>：MabSelect PrismA和Praesto Jetted A50柱采用相同上样载量和线性pH梯度洗脱，流速分别为184 cm/h和168 cm/h，停留时间均为5 min。</li>
+</ul>
+<h4>4. 分析方法</h4>
+<ul>
+<li>SEC-HPLC：采用TSK G3000SWXL柱，pH 6.8磷酸钠-氯化钠流动相等度洗脱20 min，流速1.0 mL/min，上样量100 μg，280 nm检测聚体含量。</li>
+<li>非还原SDS-PAGE：4-12%梯度胶，75℃加热样品5 min，每孔上样0.5 μg，120 V电泳90 min后自动化染色，用于组分定性。</li>
+</ul>
+<h3>关键数据</h3>
+<p>表1 文献1核心实验收率与回收率数据
+| 对应色谱图 | 组分 | 体积(mL) | 浓度(mg/mL) | 质量(mg) | 回收率(%) | 总回收率(%) |
+|------------|------|----------|-------------|----------|-----------|-------------|
+| 图1C（案例1优化梯度洗脱） | 上样 | 10.60 | 2.83 | 30.00 | 不适用 | 93.58 |
+| | 流穿 | 19.60 | 0.39 | 7.64 | 25.48 | |
+| | 洗脱池 | 75.42 | 0.27 | 20.36 | 67.87 | |
+| | 再生 | 2.28 | 0.03 | 0.07 | 0.23 | |
+| 图2B（案例2洗脱） | 上样 | 14.40 | 2.09 | 30.10 | 不适用 | 89.04 |
+| | 洗脱池 | 40.00 | 0.66 | 26.40 | 87.71 | |
+| | 再生 | 6.71 | 0.06 | 0.40 | 1.33 | |
+| 图4（pH-盐双梯度洗脱聚体样品） | 上样 | 72.00 | 1.25 | 90.00 | 不适用 | 91.35 |
+| | 洗脱峰1（单体） | 28.50 | 2.27 | 64.70 | 71.89 | |
+| | 洗脱峰2（聚体） | 9.09 | 1.87 | 17.00 | 18.89 | |
+| | 再生 | 7.31 | 0.07 | 0.51 | 0.57 | |
+| 图5A（分步洗脱聚体样品） | 上样 | 72.00 | 1.25 | 90.00 | 不适用 | 90.68 |
+| | 洗脱池 | 21.15 | 3.17 | 67.05 | 74.50 | |
+| | 再生 | 7.28 | 2.00 | 14.56 | 16.18 | |</p>
+<h3>结果与结论</h3>
+<h4>主要研究结果</h4>
+<ol>
+<li><strong>不同VH3数量物种分离效果</strong>：案例1中0个VH3的knob半抗不结合树脂，全部在流穿中去除；1个VH3的目标双抗与2个VH3的同源二聚体结合强度存在差异，浅梯度洗脱可提升分离度，目标产物收率67.87%，总回收率93.58%。案例2中1个VH3的半抗、2个VH3的单体、多聚体结合强度依次升高，线性梯度可实现三类组分依次分离，总回收率89.04%。</li>
+<li><strong>聚体分离效果</strong>：两款常规Protein A树脂的聚体与单体完全共洗脱，无法分离；MabSelect VH3采用pH-盐双梯度可实现聚体与单体基线分离，分步洗脱工艺可将25%聚体含量的样品纯化至聚体2.9%，步骤收率74.5%，总回收率90.68%。</li>
+</ol>
+<h4>结论</h4>
+<p>MabSelect VH3凭借仅结合VH3结构域的独特选择性，可有效分离VH3数量存在差异的抗体产物与杂质，同时具备常规Protein A没有的高效聚体分离能力。对于VH3数量差异杂质、高聚体含量的样品，该树脂作为捕获步骤可同时去除两类杂质，大幅降低后续精制步骤负担，是常规Protein A的更优替代。</p>
+<h3>创新点</h3>
+<ol>
+<li>首次在实际生产案例中验证了MabSelect VH3基于VH3数量分离抗体物种的性能，为双抗等复杂分子的产物相关杂质去除提供了新的捕获层解决方案，无需额外工艺步骤即可去除半抗、同源二聚体。</li>
+<li>首次发现并系统验证了MabSelect VH3的优异聚体分离能力，突破了常规Protein A无法分离聚体的行业痛点，捕获阶段即可将25%聚体降至3%以下，同时保持70%以上收率。</li>
+<li>明确了树脂的适用场景和优化工艺方向，为下游工艺开发的树脂选型提供了实验数据和应用范式，有助于提升复杂抗体纯化效率、降低成本。</li>
+</ol>
+<h2>文献二：MabSelect VH3同源二聚体去除研究</h2>
+<h3>文献信息</h3>
+<ul>
+<li>标题: Removal of homodimer species with MabSelect VH3 during the purification of an asymmetric bispecific antibody</li>
+<li>作者: Xiaoying Liang等，南京正大天晴药业方华药物研究院</li>
+<li>发表时间: 2025年5月在线发表，收录于<em>Journal of Chromatography B</em> 1260卷</li>
+</ul>
+<h3>研究概要</h3>
+<p>双特异性抗体是当前生物制药研发热点，截至2025年2月全球已有19款双抗获批上市，但其生产过程中因表达系统固有特性会产生大量错配同源二聚体杂质，显著降低产品纯度，甚至影响药物安全性和有效性，是双抗纯化的核心痛点。本研究针对的不对称双抗及其同源二聚体同时存在两类结合特性差异：一是VH3数量差异，VH1:VH1同源二聚体无VH3结构域，目标双抗VH1:VH3含1个VH3，VH3:VH3同源二聚体含2个VH3；二是Fc区对Protein A的亲和力差异，VH1:VH1同源二聚体Fc亲和力最强，目标双抗次之，VH3:VH3同源二聚体最弱，其中发酵液中VH1:VH1占比超过30%，VH3:VH3占比约2%。
+研究选取三种不同结合机制的Protein A树脂（仅结合Fc的MabSelect SuRe LX、同时结合Fc和VH3的MabSelect PrismA、仅结合VH3的MabSelect VH3）对比同源二聚体分离效率，结合高通量工艺开发（HTPD）平台和中心复合实验设计（CCD DoE）优化工艺参数，采用阳离子交换HPLC（CEX-HPLC）定量产物纯度。结果显示：MabSelect VH3分离性能最优，最终产物纯度超过98.9%；仅结合Fc的MabSelect SuRe LX次之；双结合机制的MabSelect PrismA因结合效应叠加，分离效率反而最低。研究进一步证实，当双抗与同源二聚体同时存在Fc亲和力和VH3数量差异时，Fc亲和力差异是分离的主导因素。
+该研究为双抗下游工艺优化提供了重要参考，强调了基于分子相互作用机制策略性选择层析树脂的重要性。</p>
+<h3>问题痛点</h3>
+<ol>
+<li>不对称双抗生产中高占比的VH1:VH1同源二聚体（&gt;30%）和少量VH3:VH3同源二聚体（~2%）难以去除，影响产品纯度和质量。</li>
+<li>常规Protein A树脂的结合机制未针对性匹配双抗与杂质的分子特性差异，无法高效分离两类分子，难以满足纯度要求。</li>
+<li>当分子同时存在Fc和VH3结合差异时，缺乏明确的树脂选择依据和工艺优化方向，导致工艺开发周期长、分离效率低。</li>
+</ol>
+<h3>解决方案</h3>
+<ol>
+<li>基于目标分子与杂质的结合特性差异，对比三种不同结合特异性的Protein A树脂，筛选同源二聚体分离的最优介质。</li>
+<li>建立HTPD结合CCD DoE的方法体系，以纯度和收率为响应值，优化洗脱pH、载量等关键参数，确定稳定操作窗口。</li>
+<li>解析Fc和VH3两种相互作用在分离中的贡献，明确主导影响因素，为后续双抗纯化的树脂选择提供逻辑依据。</li>
+</ol>
+<h3>研究方法</h3>
+<h4>1. 材料制备</h4>
+<p>目标不对称双抗由CHO-K1细胞表达，Dynamis培养基添加Cell Boost 7a/7b培养14天收获，经多步离心、0.22 μm过滤得到澄清上样液，蛋白滴度7.5 g/L。层析树脂、试剂均为商用采购。</p>
+<h4>2. 层析实验</h4>
+<p>三种树脂均装填于Tricorn 5/150柱（内径0.5 cm，床高15 cm，柱体积约3.0 mL），上样载量30 mg/mL树脂，流速180 cm/h（停留时间5 min），UV280吸光度大于50 mAU/mm时收集洗脱样品。采用公式$R_s=1.18\times\frac{t_{R2}-t_{R1}}{W_{1/22}+W_{1/21}}$计算峰分离度，其中$t_R$为保留时间，$W_{1/2}$为半高峰宽。</p>
+<h4>3. 高通量工艺开发（HTPD）</h4>
+<p>采用96孔过滤板（每孔装填20 μL树脂）开展筛选：树脂经平衡后加入蛋白样品，1200 rpm振荡孵育60 min，依次经平衡、洗涤缓冲液洗涤后，采用pH 3.78-4.62的乙酸钠缓冲液洗脱，所有步骤通过2000 g离心收集滤液，Nanodrop One测定抗体浓度。</p>
+<h4>4. 实验设计（DoE）与数据分析</h4>
+<p>采用JMP Pro14设计CCD DoE（α=1.414），考察洗脱pH和载量两个参数，共11组实验（含3组中心点重复），以纯度和收率为响应值，逐步回归拟合模型，要求ANOVA分析的$R^2$和调整$R^2$均高于80%，p值&lt;0.05保证预测可靠性。</p>
+<h4>5. 纯度分析（CEX-HPLC）</h4>
+<p>采用Agilent 1260 HPLC系统和Thermo ProPac WCX-10弱阳离子交换柱，流速1 mL/min，进样量30 μg；流动相A为pH 6.0的Tris-哌嗪-咪唑缓冲液，流动相B为pH 9.9的相同缓冲液，0-100% B线性梯度洗脱20 min，峰面积百分比定量双抗及同源二聚体含量。</p>
+<h3>关键数据</h3>
+<p>表2 文献2核心工艺参数与结果
+| 指标 | 数值 |
+|------|------|
+| 发酵液中VH1:VH1同源二聚体占比 | &gt;30% |
+| 发酵液中VH3:VH3同源二聚体占比 | ~2% |
+| MabSelect VH3纯化后双抗纯度 | &gt;98.9% |
+| 层析柱载量 | 30 mg/mL树脂 |
+| 层析流速 | 180 cm/h（停留时间5 min） |
+| HTPD洗脱pH筛选范围 | 3.78-4.62 |
+| DoE模型拟合要求 | $R^2$&gt;80%，调整$R^2$&gt;80%，p&lt;0.05 |</p>
+<h3>结果与结论</h3>
+<h4>主要研究结果</h4>
+<ol>
+<li>三种树脂的分离性能存在显著差异：仅结合VH3的MabSelect VH3分离效果最优，可有效去除两类同源二聚体，产物纯度&gt;98.9%；仅结合Fc的MabSelect SuRe LX次之；双结合机制的MabSelect PrismA分离效率最低，双结合模式抵消了分子间的亲和力差异。</li>
+<li>分子相互作用机制分析显示，当分子同时存在Fc亲和力和VH3数量差异时，Fc亲和力差异是分离度的主导影响因素，VH3结合贡献相对较弱。</li>
+<li>通过DoE优化得到MabSelect VH3的稳定操作窗口，工艺具备良好的稳健性和可放大性，纯度和收率均可满足临床前研究要求。</li>
+</ol>
+<h4>结论</h4>
+<p>针对同时存在Fc和VH3结合差异的不对称双抗，选择仅结合VH3的MabSelect VH3可高效去除同源二聚体杂质，获得高纯度产品。双抗工艺开发中需基于产物与杂质的分子特性差异，针对性选择树脂的配体结合机制，优先匹配主导分离的相互作用，可大幅提升分离效率，为下游工艺优化提供可靠路径。</p>
+<h3>创新点</h3>
+<ol>
+<li>首次系统对比了三种不同结合机制的Protein A树脂对同时存在Fc和VH3差异的不对称双抗的分离性能，明确了MabSelect VH3的显著优势，解决了高占比同源二聚体难去除的痛点。</li>
+<li>揭示了双抗同源二聚体分离的相互作用贡献规律：Fc亲和力差异是分离的主导因素，双结合模式树脂反而会降低分离效率，为双抗纯化的树脂选择提供了理论依据。</li>
+<li>建立了HTPD结合DoE的双抗亲和工艺开发方法体系，可快速确定稳定操作窗口，缩短开发周期，提升工艺可放大性，为同类分子的工艺开发提供了可复制的技术路径。</li>
+</ol>
+<h2>文献三：MabSelect VH3新型抗体骨架纯化</h2>
+<h3>文献信息</h3>
+<ul>
+<li>标题: Selective purification of antibody-based protein scaffolds with a novel variable heavy chain 3 affinity resin</li>
+<li>作者: Anthony S. Ransdell等，礼来制药生物技术发现研究部</li>
+<li>发表时间: 2025年9月在线发表，收录于<em>Journal of Chromatography Open</em> 8卷100263号</li>
+</ul>
+<h3>研究概要</h3>
+<p>随着生物治疗药物的发展，VHH、Fab-VHH融合蛋白、不对称抗体等复杂抗体支架逐渐成为研发热点。传统Protein A树脂通过Fc区结合实现捕获，同时可通过D结构域与VH3可变区发生较弱的相互作用，因此也可用于无Fc段的抗体片段纯化，但在不对称抗体等复杂分子纯化中，双结合机制会导致半抗、同源二聚体等组装杂质与产物共捕获，后续难以去除，需要大量分子特异性工艺优化；此外传统Protein A对VH3序列的结合亲和力有限，限制了其在非Fc融合抗体支架中的应用效率。
+本研究系统评估了MabSelect VH3对4类含VH3序列的抗体支架（VHH、Fab-VHH融合蛋白、传统mAb、单臂不对称抗体）的纯化性能，并与常规Protein A树脂MabSelect PrismA对比。结果显示：MabSelect VH3对各类VH3类分子的动态结合容量与PrismA相当，对人类VH3序列的结合亲和力显著更高；相同纯化条件下，MabSelect VH3洗脱产物的单体纯度与PrismA相当，但HCP残留降低30%~70%；对于单臂不对称抗体样品，MabSelect VH3可通过pH梯度洗脱分离组装杂质与目标产物，分步洗脱可将产物纯度从PrismA捕获后的~85%提升至≥98%，收率≥80%。
+研究证实MabSelect VH3是适用于VH3类新型抗体支架的高选择性亲和介质，可有效解决传统Protein A的杂质共捕获痛点，为新型抗体类生物药的下游工艺开发提供了更优解决方案。</p>
+<h3>问题痛点</h3>
+<ol>
+<li>传统Protein A在不对称抗体纯化中会共捕获含Fc段的组装错误杂质，后续难以去除，需要大量分子特异性工艺优化，增加开发成本和周期。</li>
+<li>传统Protein A对VH3序列的结合亲和力弱，在无Fc段的VH3类抗体支架纯化中，结合容量和特异性不足，影响纯化效率和产物质量。</li>
+<li>现有通过改造抗体Fc或VH区调节ProA结合能力去除杂质的策略，可能影响抗体的药代动力学和药效学性质，存在分子开发风险。</li>
+</ol>
+<h3>解决方案</h3>
+<p>采用经定向改造的MabSelect VH3树脂，其配体完全去除了Fc结合能力，同时显著增强了对人类VH3序列的选择性亲和力，通过VH3特异性结合实现目标产物捕获，同时避免仅含Fc段的杂质共捕获，降低非特异性结合带来的HCP残留。</p>
+<h3>研究方法</h3>
+<h4>1. 重组蛋白表达</h4>
+<p>所有测试蛋白均在礼来内部瞬转或稳转CHO平台表达，收获液经离心澄清，ProA HPLC测定表达滴度作为进料。</p>
+<h4>2. 自动化亲和捕获对比实验</h4>
+<p>采用ÄKTA pure 25 M层析系统，1 mL预装MabSelect PrismA和MabSelect VH3柱开展平行实验：上样载量40 mg/mL，接触时间1 min（流速1 mL/min）；平衡后依次经pH 7.0 Tris缓冲液、1 M NaCl高盐缓冲液、Tris缓冲液洗涤；pH 2.7柠檬酸盐缓冲液10 CV等度洗脱，洗脱液预加醋酸钠中和；0.5 M NaOH在位清洁，Tris缓冲液中和。重复实验省略高盐洗涤步骤验证性能稳定性。</p>
+<h4>3. 动态结合容量（DBC）测定</h4>
+<p>预纯化的重组蛋白透析至PBS，稀释至1~2 mg/mL，首先旁路模式上样测定A280作为100% breakthrough参照；1 mL MabSelect VH3柱经PBS平衡后，0.5 mL/min流速上样（接触时间2 min），A280达到10% breakthrough值时停止上样；洗涤后pH 2.7柠檬酸盐洗脱，Nanodrop定量洗脱产物，计算10%突破下的动态结合容量（QB10）。</p>
+<h4>4. 单臂不对称抗体（OAM）纯化筛选实验</h4>
+<p>首先用5 mL HiTrap MabSelect PrismA柱捕获含OAM的澄清培养液，洗脱液中和后经aSEC分析杂质谱；将PrismA捕获的OAM样品以10 mg/mL载量上样至MabSelect VH3柱，1 min接触时间上样，洗涤后降低流速至0.5 mL/min，20 CV pH梯度（pH 6.0至pH 2.7柠檬酸盐）洗脱，记录洗脱峰；根据梯度洗脱峰的pH值，设置~3.9、~3.7、2.7三个pH分步洗脱，分别收集组分，aSEC表征纯度，计算收率。</p>
+<h4>5. 产物分析</h4>
+<ul>
+<li>纯度分析：Agilent 1260 HPLC系统，mAb采用TSKgel UP-SW3000柱，其他分子采用TSKgel UP-SW2000柱，PBS+350 mM NaCl pH 7.4流动相，流速0.35 mL/min，上样量5~10 μg，面积归一化法计算单体纯度。</li>
+<li>HCP残留：商业化CHO HCP ELISA试剂盒测定。</li>
+</ul>
+<h3>关键数据</h3>
+<p>表3 文献3两种树脂性能对比
+| 性能指标                | MabSelect VH3树脂                          | MabSelect PrismA树脂                |
+|-------------------------|-------------------------------------------|-------------------------------------|
+| 对VH3类分子结合亲和力   | 显著高于PrismA                            | 较弱，仅通过D结构域非特异性结合VH3  |
+| 动态结合容量（QB10）    | 对VHH、Fab-VHH、mAb、OAM均与PrismA相当    | 行业常规水平                         |
+| 洗脱产物单体纯度        | 与PrismA相当，多数样品≥95%                | 相当，多数样品≥95%                   |
+| 洗脱产物HCP残留         | 较PrismA降低30%~70%（分子依赖性）         | 行业常规水平                         |
+| 不对称抗体杂质去除能力  | pH梯度/分步洗脱可去除≥90%的半抗、同源二聚体 | 杂质与产物共洗脱，无分离能力         |
+| 适用pH范围              | 常规亲和操作pH 3~8，可耐受0.5 M NaOH CIP   | 同左                                |</p>
+<h3>结果与结论</h3>
+<h4>主要研究结果</h4>
+<ol>
+<li>通用纯化性能：MabSelect VH3对所有测试的含VH3序列的抗体支架均具有良好结合能力，动态结合容量与PrismA相当，可满足30~40 mg/mL的常规上样载量需求；洗脱产物单体纯度与PrismA无显著差异，符合生物药中间体质量要求。</li>
+<li>杂质去除性能：相同条件下，MabSelect VH3洗脱产物的HCP残留较PrismA降低30%~70%，抗非特异性结合性能更优。</li>
+<li>复杂分子分离性能：单臂不对称抗体样品经PrismA捕获后纯度约85%，上样至MabSelect VH3后，pH梯度洗脱下可观察到两个完全分离的峰，分步洗脱验证显示pH ~3.9组分为组装错误杂质，pH ~3.7组分为正确组装的OAM单体，纯度≥98%，收率≥80%，而传统ProA无法实现该类杂质分离。</li>
+</ol>
+<h4>结论</h4>
+<p>MabSelect VH3是针对VH3类抗体支架的高选择性亲和介质，既保留了传统ProA的高结合容量、易用性和耐碱性，又通过配体改造实现了VH3特异性结合，可有效解决传统ProA在复杂分子纯化中的杂质共捕获痛点，同时降低HCP残留，为新型抗体类生物药的下游工艺开发提供了高效、通用的解决方案，减少分子特异性工艺优化的工作量，降低开发成本。</p>
+<h3>创新点</h3>
+<ol>
+<li>首次系统评估了首款仅靶向VH3序列的商业化亲和树脂对多种新型抗体支架的纯化性能，覆盖从单域抗体到复杂不对称抗体，为其工业应用提供了全面的性能参考数据。</li>
+<li>验证了该树脂通过VH3亲和力差异选择性去除不对称抗组装杂质的能力，无需对抗体分子本身进行改造即可实现高效分离，避免了分子改造带来的成药性风险。</li>
+<li>证实该树脂在保持与传统ProA相当的结合容量和纯度的同时，可进一步降低HCP残留，能够简化后续精制步骤设计，提升工艺整体效率。</li>
+</ol>
+<h2>三篇文献对比分析</h2>
+<h3>共同发现</h3>
+<p>三篇文献从不同应用场景验证了MabSelect VH3树脂的核心性能优势，存在多项共性结论：
+1. <strong>分离机制共性</strong>：MabSelect VH3仅结合VH3结构域的独特配体设计，是其优于常规Protein A树脂的核心基础，可基于分子的VH3结构域数量差异产生的结合强度不同，通过梯度洗脱实现产物与相关杂质的分离，为复杂抗体分子的杂质去除提供了新的分离维度。
+2. <strong>性能优势共性</strong>：所有研究均证实该树脂对于双抗、不对称抗体等复杂分子的半抗、同源二聚体类杂质具有显著的分离效果，可在捕获阶段实现常规Protein A无法完成的杂质去除，大幅降低后续精制步骤的压力。
+3. <strong>工艺兼容性共性</strong>：该树脂的操作pH范围、耐碱性（可耐受0.5 M NaOH CIP）、动态结合容量均与常规Protein A树脂相当，无需大幅调整现有工艺平台即可适配，具备良好的工业应用基础，工艺优化方向清晰（主要通过调整洗脱梯度提升分离度）。
+4. <strong>收率与纯度平衡共性</strong>：三篇研究均显示，在优化的工艺条件下，MabSelect VH3可同时满足高纯度和较高收率的要求，产物纯度普遍可达98%以上，收率维持在70%~80%的工业可接受区间，兼顾质量和经济性。</p>
+<h3>差异与互补</h3>
+<p>三篇文献的研究侧重点不同，形成了良好的互补关系，全面覆盖了MabSelect VH3的应用场景：
+1. <strong>研究对象互补</strong>：文献1聚焦双抗和单抗的VH3数量差异杂质分离和聚体去除，重点解决常规Protein A的聚体分离痛点；文献2聚焦不对称双抗的同源二聚体去除，重点解析不同结合机制树脂的分离性能差异和分子相互作用规律；文献3将应用场景拓展至无Fc段的新型抗体支架（VHH、Fab融合蛋白等），进一步验证了树脂的通用性。
+2. <strong>机制解析互补</strong>：文献1首次证实了VH3数量与结合强度的正相关关系（VH3数量越多，结合越强，洗脱pH越低）；文献2进一步明确了当分子同时存在Fc和VH3结合差异时，Fc亲和力是分离的主导因素，为树脂选型提供了理论依据；文献3则验证了该树脂对无Fc段分子的结合能力，证实其VH3结合特异性不受Fc区域存在与否的影响。
+3. <strong>工艺开发互补</strong>：文献1提供了线性梯度、pH-盐双梯度、分步洗脱等不同工艺模式的参数参考，明确了聚体分离的最优工艺方向；文献2建立了高通量筛选结合DoE的工艺优化方法，为快速开发稳定工艺提供了可复制的路径；文献3验证了40 mg/mL高载量下的性能，证实其可满足工业生产的载量需求。
+4. <strong>杂质类型互补</strong>：三篇研究分别覆盖了产物相关杂质（半抗、同源二聚体）、工艺相关杂质（聚体、HCP）两大类关键质量属性的去除能力，全面证实了该树脂在提升产物质量方面的多重优势。</p>
+<h3>工业应用价值</h3>
+<p>三篇研究共同支撑了MabSelect VH3在抗体纯化领域的高工业应用价值：
+1. <strong>降低工艺复杂度</strong>：对于双抗、不对称抗体等复杂分子，采用该树脂作为捕获步骤可在捕获阶段同时去除半抗、同源二聚体、聚体等多种杂质，减少后续精制步骤的数量和负载，甚至对于部分分子可减少1~2步精制工序，大幅缩短工艺周期、降低生产成本。
+2. <strong>提升产品质量</strong>：该树脂可有效去除常规捕获步骤难以去除的产物相关杂质和聚体，降低后续精制步骤的除杂压力，更易满足最终产品的质量标准，尤其适用于临床阶段对纯度要求较高的分子，以及聚体、同源二聚体等杂质难以通过后续步骤去除的分子。
+3. <strong>拓展工艺适用范围</strong>：对于无Fc段的VH3类抗体片段、融合蛋白等新型分子，该树脂提供了一种高亲和力、高选择性的捕获解决方案，弥补了传统Protein A对该类分子结合能力不足的痛点，为新型抗体药物的工艺开发提供了新的选择。
+4. <strong>适配现有工艺平台</strong>：该树脂的操作条件、耐碱性、结合容量均与现有Protein A工艺平台兼容，工艺开发人员无需额外建立新的平台方法，仅需优化洗脱梯度即可快速完成工艺开发，降低了工艺切换的成本和风险。</p>
+<h2>总结与展望</h2>
+<p>三篇文献从不同角度系统验证了MabSelect VH3作为新型Protein A亲和树脂的独特性能优势，其仅结合VH3结构域的设计突破了常规Protein A依赖Fc结合的限制，提供了基于VH3数量差异的全新分离维度，不仅在双抗、不对称抗体等复杂分子的产物相关杂质去除、聚体分离方面表现出显著优势，还可应用于无Fc段的新型抗体支架纯化，同时具备更低的HCP残留和良好的工艺兼容性，为抗体下游工艺开发提供了更优的树脂选择。
+未来该树脂的应用可进一步向以下方向拓展：一是针对更多类型的复杂分子（如三特异性抗体、多价抗体、抗体-药物偶联物中间体等）开展性能验证，进一步拓展其适用场景；二是结合连续层析工艺，利用其高选择性和高载量特点，开发连续捕获工艺，进一步提升生产效率、降低生产成本；三是深入解析VH3序列与配体的结合机制，明确不同VH3亚家族的结合亲和力差异，为分子设计阶段的VH序列选型提供参考，从分子层面与工艺开发形成协同，进一步提升纯化效率。总体而言，MabSelect VH3有望成为复杂抗体和新型抗体支架纯化的主流捕获树脂，推动抗体下游工艺的进一步升级。</p>
+            
+            <a href="/" class="back-link">← 返回导航站</a>
         </div>
         
-        <div style="margin-top: 40px;">
-            <a href="/categories/antibody/" class="back-btn">← 返回抗体纯化分类</a>
-        </div>
-    </main>
-    
-    <footer class="footer">
-        <div class="footer-links">
-            <a href="/">首页</a>
-            <a href="/categories/antibody/">抗体纯化</a>
-            <a href="/posts/">全部文献</a>
-            <a href="/index.xml">RSS订阅</a>
-        </div>
-        <p>© 2026 蛋白纯化文献赏析 | 由 OpenClaw 驱动</p>
-    </footer>
+        <footer>
+            <p>文献赏析 · 蛋白纯化技术平台</p>
+        </footer>
+    </div>
 </body>
 </html>
